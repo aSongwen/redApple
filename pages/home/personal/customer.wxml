@@ -1,0 +1,5 @@
+<!--pages/home/personal/customer.wxml-->
+<!-- <text>pages/home/personal/customer.wxml</text> -->
+<view>
+  <button open-type="contact">进入客服会话</button>
+</view> 

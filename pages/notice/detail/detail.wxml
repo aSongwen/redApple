@@ -1,0 +1,14 @@
+<view class='all-headers'>
+  <view class='all-headers-column' style='width:{{screenWidth}}px'>
+    <text class='headers-text1'>{{msg.title}}</text>
+    <text class='headers-text2'>发布时间:{{msg.getTime}}</text>
+  </view>
+  <!--<view class='all-headers-right'>
+    <image src='/pages/home/icon/pencil100.png' style='width:50rpx;height:50rpx' bindtap='editTextArea'></image>
+  </view>-->
+</view>
+<view class='view-show'>
+  <view style='height:30rpx;'></view>
+  <view class='textarea-show'><rich-text nodes="{{msg.content}}"></rich-text></view>
+  <!--<textarea class='textarea-show' bindblur='setTextArea' maxlength='5000' disabled='{{textdisabled}}' focus='{{textfocus}}' value='{{textValue}}' style='height:{{height-200}}px;width:{{screenWidth * 0.9}}'></textarea>-->
+</view>

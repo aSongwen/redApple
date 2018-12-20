@@ -1,0 +1,64 @@
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100vh;background-size:100%;">
+<view class='header'>
+  <view style='height:40rpx;'></view>
+  <!-- <image src='../../icon/apple.png' style='height:120rpx;width:120rpx;'></image> -->
+  <!--<image src='../../icon/apple_logo.png' style='height:120rpx;width:120rpx;'></image>-->
+  <view style='height:24rpx;'></view>
+  <view class='headere-text1' wx:if='{{detail.financeItemCode==11 && typeid == 1}}'>{{detail.coins}}</view>
+  <view class='headere-text1' wx:if='{{detail.financeItemCode==11 && typeid == 2}}'>{{detail.amounts}}</view>
+  <view class='headere-text1' wx:if='{{detail.financeItemCode==12 && typeid == 1}}'>{{detail.coins}}</view>
+  <view class='headere-text1' wx:if='{{detail.financeItemCode==12 && typeid == 2}}'>{{detail.amounts}}</view>
+  <view class='headere-text1' wx:if='{{detail.financeItemCode!=11 && detail.financeItemCode!=12}}'>{{detail.amount == 0?detail.coins:detail.amounts}}</view>
+  <view style='height:40rpx;'></view>
+  <view class='headere-text2' wx:if='{{detail.financeItemCode==11 && typeid == 1}}'>{{home_menu_data.home_0008}}</view>
+  <view class='headere-text2' wx:if='{{detail.financeItemCode==11 && typeid == 2}}'>{{home_menu_data.home_0012}}</view>
+  <view class='headere-text2' wx:if='{{detail.financeItemCode==12}}'>管理员操作</view>
+  <view class='headere-text2' wx:if='{{detail.financeItemCode==13}}'>指定{{home_menu_data.home_0013}}</view>
+  <view class='headere-text2' wx:if='{{detail.financeItemCode==14}}'>{{home_menu_data.home_0007}}</view>
+  <view class='headere-text2' wx:if='{{detail.financeItemCode==15}}'>签到奖励</view>
+  <view class='headere-text2' wx:if='{{detail.financeItemCode==16}}'>{{home_menu_data.home_0011}}</view>
+  <view class='headere-text2' wx:if='{{detail.financeItemCode==17}}'>{{home_menu_data.home_0009}}</view>
+  <view class='headere-text2' wx:if='{{detail.financeItemCode==20&&typeid==1}}'>投诉{{home_menu_data.home_0016}}</view>
+  <view class='headere-text2' wx:if='{{detail.financeItemCode==20&&typeid==2}}'>投诉{{home_menu_data.home_0014}}</view>
+  <view style='height:40rpx;width:90%;border-bottom: 1rpx solid #cdcdcd;'></view>
+</view>
+<view class='one'>
+  <view style='height:40rpx;'></view>
+  <view class='one-row'>
+    <view class='one-row-row1'>交易方式</view>
+    <view class='one-row-row2'>{{detail.notes}}</view>
+  </view>
+  <view style='height:40rpx;'></view>
+  <view class='one-row'>
+    <view class='one-row-row1'> {{home_menu_data.persion_0003}}名称</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==5 && typeid == 1}}'>浏览佣金</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==10 && typeid == 1}}'>浏览分佣佣金</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==11 && typeid == 1}}'>{{home_menu_data.home_0008}}</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==11 && typeid == 2}}'>{{home_menu_data.home_0012}}</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==12}}'>管理员操作</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==13}}'>指定{{home_menu_data.home_0013}}</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==14}}'>{{home_menu_data.home_0007}}</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==15}}'>签到奖励</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==16}}'>{{home_menu_data.home_0011}}</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==17}}'>{{home_menu_data.home_0009}}</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==20}}'>投诉{{home_menu_data.home_0009}}</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==23 || detail.financeItemCode==24}}'>系统补款</view>
+    <view class='one-row-row2' wx:if='{{detail.financeItemCode==25 || detail.financeItemCode==26}}'>系统扣款</view>
+  </view>
+  <view style='height:40rpx;'></view>
+  <view class='one-row'>
+    <view class='one-row-row1'>交易流水号</view>
+    <view class='one-row-row2'>{{detail.id}}</view>
+  </view>
+  <view style='height:40rpx;'></view>
+  <view class='one-row'>
+    <view class='one-row-row1'>创建时间</view>
+    <view class='one-row-row2'>{{detail.gmtTime}}</view>
+  </view>
+  <view style='height:40rpx;' wx:if='{{detail.financeItemCode==12}}'></view>
+  <view class='one-row' wx:if='{{detail.financeItemCode==12}}'>
+    <view class='one-row-row1'>备注</view>
+    <view class='one-row-row2'>{{detail.operateNotes}}</view>
+  </view>
+</view>
+</view>

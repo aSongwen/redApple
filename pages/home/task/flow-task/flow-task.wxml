@@ -1,0 +1,180 @@
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100%;background-size:100%;overflow-x: hidden">
+    <view style='height:auto;width:{{width}}px;' class='show-view'>
+        <view class="headers">
+            <view class='headerows row1'>
+                <image src='../../icon/icon_daojishi.png' style='height:50rpx;width:50rpx;'></image>
+            </view>
+            <view class='headerows row2'>
+                <text>{{home_menu_data.persion_0003}}倒计时:<text style="color:{{date == '任务已超时'?'#f54747':''}}">{{date}}</text></text>
+            </view>
+            <view class='headerows row3'>
+                <view class='headerows row3 btn' bindtap='showDialogBtn'>
+                    <text>放弃{{home_menu_data.persion_0003}}</text>
+                </view>
+            </view>
+        </view>
+        <view style='height: 100rpx;'></view>
+        <view class='second'>
+            <view style='width:5%;' />
+            <text class='icon'></text>
+            <text>搜索商品</text>
+        </view>
+        <view class='three'>
+            <view class='three-one' bindtap='listenerButtonPreviewImage'>
+                <image src='{{task.mainImageUrl}}' style='height:250rpx;width:250rpx;' class='three-one-img1' bindtap=''>
+                </image>
+            </view>
+            <view class='three-two'>
+                <view class='three-two-row1'>
+                    <text class='three-two-row1-text'>{{task.title}}</text>
+                </view>
+                <view class='three-two-row2'>
+                    搜索展示价格：<text style='color:#f59147'>{{task.showPrice}}元</text>
+                </view>
+                <view class='three-two-row2'>排序位置：约{{task.payerNum}}人付款</view>
+                <view class='three-two-row3'>
+                    <image style='height:40rpx;width:40rpx;' src='../../icon/icon_dizhi.png'></image>
+                    <view style='width:10rpx;'></view>
+                    <text>{{task.deliveryArea}}</text>
+                </view>
+            </view>
+        </view>
+        <view style='height:20rpx;'></view>
+        <view class='four'>
+            <view class='four-row1'>
+                <view class='four-row1-row1'>
+                    <image style='height:50rpx;width:50rpx;' src='../../icon/icon_guanjianci.png'></image>
+                </view>
+                <view class='four-row1-row2'>
+                    搜索关键字
+                </view>
+                <view class='four-row1-row3'>
+                    <view style='width:20rpx;'></view>
+                    <view>{{task.keyword}}</view>
+                </view>
+            </view>
+            <view class='four-row2'>
+                <view class='four-row2-row1'>
+                    <view style='width:20rpx;'></view>
+                </view>
+                <view class='four-row2-row2'>
+                    <view style='width:20rpx;'></view>
+                    <view class='four-row2-text' bindtap='setClipboardData' data-value='{{task.task.keyword}}'>点击复制关键字</view>
+                </view>
+            </view>
+            <view class='five-row2'>
+                <view class='five-row2-row1'>
+                    <text class='text-btn' style="font-size:30rpx;">!</text>
+                </view>
+                <view class='five-row2-row2'>
+                    <text>商家要求</text>
+                </view>
+                <view class='five-row2-row3'>
+                    <text style='color:#333333;min-height:80rpx;padding-bottom: 20rpx;'>{{task.notes}}</text>
+                    <view style='width:20rpx;'></view>
+                </view>
+            </view>
+            <view styel="height:50rpx;"></view>
+
+        </view>
+        </view>
+        <view class='second'>
+            <view style='width:5%;' />
+            <text class='icon'></text>
+            <text>核验{{home_menu_data.persion_0003}}</text>
+        </view>
+        <view class="{{taskAuditMode}}" style="background: #fff;padding: 32rpx 0 20rpx;height:70rpx;">
+            <view class='six-row1'>
+                <view class='six-row1-row1'>
+                    <text class='text-btn'>1</text>
+                </view>
+                <view class='six-row1-row2'>
+                    <text>商家店铺名：</text>
+                </view>
+                <view class='six-row1-row3'>
+                    <text>{{task.webStoreName}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="six six2">
+            <view class='six-row2' style="padding-bottom: 20rpx;">
+                <view class='six-row2-row1'>
+                    <text class='text-btn'>2</text>
+                </view>
+                <view class='six-row2-row2'>
+                    <input class='text-input' cursor-spacing='120' maxlength='1000' placeholder-style='color:#888888' placeholder='请粘贴分享淘口令或商品链接核验' bindinput='setLinkAddress' value='{{flowLinkAddress}}'></input>
+                    <view class='delView'>
+                        <icon type='clear' size='20' bindtap='delLinkAddress' wx:if='{{flowLinkAddress != null && flowLinkAddress.length > 0}}'></icon>
+                    </view>
+                </view>
+                <view class='six-row2-row3' bindtap='checkFlowLinkAddress'>
+                    <text class='text-btn2'>核对</text>
+                </view>
+            </view>
+            <view class='second'wx:if='{{task.taskType != 1}}'>
+                <view style='width:5%;' />
+                <text class='icon'></text>
+                <text>截图证明</text>
+            </view>
+            <view class="flowContent" wx:if='{{task.taskType != 1}}'>
+                <view class="conBox" wx:if='{{task.taskType == 3 || task.taskType == 5 || task.taskType == 7 || task.taskType == 8 }}'>
+                    <image wx:if="{{collectPictureId == null || collectPictureId == ''}}" bindtap="setCollectPicture" src="../../icon/flowAdd.png"></image>
+                    <image wx:else src='{{collectPictureId}}' bindtap="listenerviewImage" data-id="1">
+                    <image src='../evaluate-task/icon/icon_delete.png' class="delete-btn" mode='widthFix' data-id="1" catchtap="deleteImg" />
+                    </image>
+                    <view class="bigImg" wx:if="{{bigImg}}">
+                        <image src='{{collectPictureId}}' data-id="1" bindtap="listenerviewImage"></image>
+                    </view>
+                    <view>商品收藏截图</view>
+                </view>
+                <view class="conBox" wx:if='{{task.taskType == 2 || task.taskType == 5 || task.taskType == 6 || task.taskType == 8 }}'>
+                    <image wx:if="{{shoppingPictureId == null || shoppingPictureId == ''}}" bindtap="setShoppingPicture" src="../../icon/flowAdd.png"></image>
+                    <image wx:else src='{{shoppingPictureId}}' bindtap="listenerviewImage" data-id="2">
+                    <image src='../evaluate-task/icon/icon_delete.png' class="delete-btn" mode='widthFix' data-id="2" catchtap="deleteImg" />
+                    </image>
+                    <view class="bigImg" wx:if="{{bigImg2}}">
+                        <image src='{{shoppingPictureId}}' data-id="2" bindtap="listenerviewImage"></image>
+                    </view>
+                    <view>加入购物车截图</view>
+                </view>
+                <view class="conBox" wx:if='{{task.taskType == 4 || task.taskType == 6 || task.taskType == 7 || task.taskType == 8 }}'>
+                    <image wx:if="{{interestPictureId == null || interestPictureId == ''}}" bindtap="setInterestPicture"
+src="../../icon/flowAdd.png"></image>
+                    <image wx:else src='{{interestPictureId}}' bindtap="listenerviewImage" data-id="3">
+                    <image src='../evaluate-task/icon/icon_delete.png' class="delete-btn" mode='widthFix' data-id="3" catchtap="deleteImg" /></image>
+                    <view class="bigImg" wx:if="{{bigImg3}}">
+                        <image src='{{interestPictureId}}' data-id="3" bindtap="listenerviewImage"></image>
+                    </view>
+                    <view>关注店铺截图</view>
+                </view>
+            </view>
+        </view>
+    <view style="height:250rpx;"></view>
+    <view class='bottom-view bottom-view2'>
+        <view class="wait"  bindtap='clickCheckbox'>
+            <view class='end-row2 end-row3'>
+                <image src="../../icon/juxin01.png"  wx:if='{{imageCheckbox}}'></image>
+                <image src="../../icon/juxin02.png"  hidden='{{imageCheckbox}}'></image>
+                <view class='end-row2-text wait-text'>提示:需要正常浏览商品{{countDownTime}}秒，可浏览评价和详情页等。</view>
+            </view>
+        </view>
+        <button class='bottom-view-btn2' disabled="{{disable}}" bindtap='sumbitTaskFlow'>{{earnCode}}</button>
+    </view>
+    <!--弹窗-->
+    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+    <view class="modal-dialog" wx:if="{{showModal}}">
+        <view class="modal-title">提示</view>
+        <view class="modal-content">
+            <view class="modal-input">
+                <text class='modal-input-text'>确定放弃这次{{home_menu_data.persion_0003}}吗？</text>
+            </view>
+        </view>
+        <view class="modal-footer">
+            <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">是</view>
+            <view class="btn-cancel" bindtap="onCancel" data-status="cancel">否</view>
+        </view>
+    </view>
+    <loading hidden="{{loading?'hidden':''}}">
+        核对中...
+    </loading>
+</view>

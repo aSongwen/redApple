@@ -1,0 +1,380 @@
+.show-view {
+  /*background-color: rgba(240,240,240,.6);*/
+  display: flex;
+  flex-direction: column;
+}
+.headers {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  height: 100rpx;
+  width: 100%;
+  background-color: #ffe5d3;
+  border-bottom: 0.5rpx solid #ffc096;
+  z-index: 6666;
+}
+
+.headerows-row1 {
+  display: flex;
+  height: 100%;
+  width: 15%;
+  justify-content: center;
+  /* margin-top: 30rpx; */
+  align-items: center;
+}
+
+.headerows-row2 {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  height: 100%;
+  width: 55%;
+  /* margin-top: 30rpx; */
+}
+
+.headerows-row2-column1 {
+  color: #5d5d5d;
+  height: auto;
+  font-size: 30rpx;
+}
+
+.headerows-row2-column2 {
+  color: #999;
+  font-size: 32rpx;
+  height: 50%;
+}
+
+.headerows-row3 {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  width: 30%;
+  justify-content: center;
+}
+.bottom-view {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  background-color: #ffffff;
+  line-height: 120rpx;
+  z-index: 66;
+  padding-top: 30rpx;
+  border-top: 0.5rpx #cdcdcd solid;
+}
+
+.bottom-view-btn {
+  width: 90%;
+  height: 80%;
+  color: #ffffff;
+  background-color: #f54747;
+}
+.second {
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  color: #5d5d5d;
+  align-items: center;
+}
+
+.icon {
+  height: 42rpx;
+  width: 8rpx;
+  border-left: 8rpx solid #f54747;
+}
+.three {
+  display: flex;
+  height: 300rpx;
+  width: 100%;
+  background-color:rgba(255,255,255,.7);
+}
+
+.three-one {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 100%;
+}
+
+.three-one-img1 {
+  position: relative;
+}
+
+.three-one-img2 {
+  position: absolute;
+  bottom: 0;right: 0;
+}
+
+.three-two {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  height: 100%;
+}
+
+.three-two-row1 {
+  display: flex;
+  padding-top: 25rpx;
+  height: 80rpx;
+  color: #333333;
+  font-size: 36rpx;
+}
+.three-two-row1-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.three-two-row2 {
+  display: flex;
+  align-items: center;
+  height: 60rpx;
+  color: #999999;
+  font-size: 30rpx;
+}
+.three-header {
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  width: 100%;
+  background-color:rgba(255,255,255,.7);
+  border-bottom: 0.5rpx #cdcdcd solid;
+  color: #999999;
+  font-size: 30rpx;
+}
+.four{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color:rgba(255,255,255,.7);
+}
+
+.four-column1{
+  height: 60rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: #999999;
+  font-size: 30rpx;
+}
+.four-column2{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.four-column2-textarea{
+  width: 90%;
+  height: 100%;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+.four-column3{
+  /* height: auto; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /*background-color:rgba(255,255,255,.7);*/
+}
+.four-column3-head{
+  height: auto;
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.four-column3-array{
+  height: 180rpx;
+  width: 90%;
+}
+.four-column3-array-image{
+  height: 180rpx;
+  width: 18%;
+  padding-right: 2.5%;
+}
+.four-column3-array-image2{
+  height: 180rpx;
+  width: 18%;
+}
+.four-column4{
+  height: 130rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color:rgba(255,255,255,.7);
+}
+.four-column4-btn{
+  width: 90%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border:0.5rpx #f54747 solid;
+  color: #f54747; 
+  font-size: 34rpx;
+  background-color: #ffffff;
+}
+.five{
+  display: inline-block;
+    width: 100%;
+    height: auto;
+  background-color:rgba(255,255,255,.7);
+}
+.add_img{
+  height:200rpx;
+  width:200rpx;
+  margin-left: 5%;
+  margin-bottom: 20rpx;
+}
+.add_img1{
+  position: relative;
+  float: left;
+  width: 200rpx;
+  height: 200rpx;
+  line-height: 200rpx;
+  margin-left: 5%;
+  margin-bottom: 20rpx;
+}
+.delete-btn {
+  position: absolute;
+  top: 0rpx;
+  right: 0rpx;
+  width: 50rpx;
+  height:50rpx;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+.imgSrc-item{
+  width:200rpx;
+  height:200rpx;
+  float:left;
+  margin-right:10rpx;
+}
+.evaluation{
+  margin-bottom:10rpx;
+}
+.tips{
+  color:#f54747;
+  font-size: 30rpx;
+  padding:0 40rpx;
+}
+/* page{
+  position:relative;
+}
+.prevImage{
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:105%;
+  z-index:77;
+}
+#mask{
+  width:100%;
+  height:100%;
+  background:#000;
+  opacity:0.6; 
+  z-index:88;
+}
+.maskImage{
+  width:400rpx;
+  height:500px;
+  border:1px solid #fff;
+  z-index:99;
+} */
+
+.show-btn {
+  margin-top: 100rpx;
+  color: #22cc22;
+}
+
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff;
+}
+
+.modal-dialog {
+  width: 500rpx;
+  position: fixed;
+  top: 40%;
+  left: 0;
+  z-index: 9999;
+  background: #f9f9f9;
+  margin: -180rpx 125rpx;
+  border-radius: 36rpx;
+  padding: 40rpx 60rpx;
+  box-sizing: border-box;
+}
+
+.modal-title {
+  padding-top: 50rpx;
+  font-size: 36rpx;
+  color: #030303;
+  text-align: center;
+}
+
+.modal-content {
+ color:#666;
+  font-size: 28rpx;
+  margin-bottom: 50rpx;
+  line-height: 55rpx;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  height: 86rpx;
+  font-size: 34rpx;
+  line-height: 86rpx;
+}
+.modal-footer button::after{
+  border: none;
+}
+.dialogImg{
+  display: flex;
+  justify-content: center;
+}
+.dialogImg image{
+  width:280rpx;
+  height:200rpx;
+  margin-bottom: 60rpx;
+}
+.btn-cancel {
+  width: 50%;
+  color: #e35441;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.btn-confirm {
+  width: 50%;
+  color: #fff;
+  height:66rpx;
+  line-height: 66rpx;
+  text-align: center;
+  font-size: 28rpx;
+  background: #ff7e77;
+  border-bottom: 6rpx solid #e3544c;
+  border-radius: 30rpx;
+}
+.dialogClose{
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: -100rpx;
+  width:380rpx;
+  z-index: 9001;
+}
+.dialogClose image{
+  width:50rpx;
+  height:50rpx;
+  z-index: 9001;
+}

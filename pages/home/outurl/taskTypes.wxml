@@ -1,0 +1,6 @@
+<!--pages/home/outurl/taskTypes.wxml-->
+<view class="task-head">
+  <view class="task-head-context">
+    <web-view src="https://mp.weixin.qq.com/"></web-view>
+  </view>
+</view>

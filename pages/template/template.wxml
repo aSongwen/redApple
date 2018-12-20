@@ -1,0 +1,11 @@
+<template name='inputTemp'>
+  <view class='template-input'></view>
+</template>
+
+<template name='entryTemp'>
+  <input class='template-entry' placeholder='{{msg}}' style='height:{{height}}'></input>
+</template>
+
+<template name='buttonTemp'>
+  <button class='template-button' style='height:{{height}};width:{{width}}'>{{button}}</button>
+</template>

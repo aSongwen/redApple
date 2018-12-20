@@ -1,0 +1,126 @@
+<!--pages/commission/cash.wxml-->
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100%;background-size:100%;">
+<view class="swiper-tab"> 
+ <view class="tab-item {{currentTab==0 ? 'on' : ''}}" data-current="0" data-tradingType='2' bindtap="swichNav">
+  <text class='tab-item-text1' data-current="0" data-tradingType='2'>提到微信钱包</text>
+  <text style='height:10rpx;' data-current="0" data-tradingType='2'></text>
+  <text class='tab-item-text2' data-current="0" data-tradingType='2'>{{wx_deadLine==null||wx_deadLine==""?'10分钟内到账':wx_deadLine}}</text>
+</view> 
+ <view class="tab-item {{currentTab==1 ? 'on' : ''}}" data-current="1" data-tradingType='3' bindtap="swichNav">
+  <text class='tab-item-text1' data-current="1" data-tradingType='3'>提到银行卡</text>
+  <text style='height:10rpx;' data-current="1" data-tradingType='3'></text>
+  <text class='tab-item-text2' data-current="1" data-tradingType='3'>{{bank_deadLine==null||bank_deadLine==""?'2个工作日内到账':bank_deadLine}}</text>
+ </view>
+</view> 
+<swiper current="{{currentTab}}" class="swiper" duration="300" style="height:1000rpx;  background-color: rgba(240,240,240,.7);" bindchange="bindChange">
+ <swiper-item> 
+  <view class='swiper-view1' style='height:{{role == 0?280:360}}rpx;' wx:if="{{!systemBusy}}">
+    <view class='swiper-view1-row1'>
+      <text style='width:5%;'></text>
+      <text>{{home_menu_data.home_0006}}{{home_menu_data.home_0002}}</text><text wx:if='{{fee > 0}}'>({{home_menu_data.home_0006}}将会收取{{feemoney == null?fee + '%':feemoney + '元'}}手续费)</text>
+    </view>
+    <view class='swiper-view1-row2'>
+      <view class='swiper-view1-row2-row' style='border-bottom:0.5rpx #cdcdcd solid;'>
+        <text style='width:10%;height:80rpx;line-height:80rpx;'>￥</text>
+        <input type='digit' style='width:90%;height:80rpx;' bindinput='setMoney' value='{{money}}'></input>
+      </view>
+    </view>
+    <view class='swiper-view1-row3'>
+      <view class='swiper-view1-row3-row'>
+        <view class='swiper-view1-row3-row-row1'>
+          <text style='color:#999999;font-size:32rpx;'>{{home_menu_data.home_0002}}余额(元):</text><text style='color:#333333;font-size:32rpx;'>{{capital}}</text>
+        </view>
+        <view class='swiper-view1-row3-row-row2' bindtap='getAllMoney'>全部{{home_menu_data.home_0006}}</view>
+      </view>
+    </view>
+  </view> 
+  <view class='swiper-view1' wx:if="{{systemBusy}}">
+    <view class='warmingText'>
+      {{errNotice}}
+    </view>
+  </view>
+  <view class='swiper-bottom'>
+    <view style='height:70rpx;'></view>
+    <!----
+    <view class='swiper-btn' bindtap='wechatMoney' wx-if='{{!systemBusy}}'>提到微信钱包</view>
+    <view class='swiper-btn' style='background:#878787' wx-if='{{systemBusy}}'>提到微信钱包</view>-->
+     <button class='swiper-btn' open-type='getUserInfo' bindgetuserinfo="wechatMoney"  disabled='{{disabled}}' wx-if='{{!systemBusy}}' >提到微信钱包</button>
+    <button class='swiper-btn' style='background:#878787' open-type='getUserInfo'  disabled='{{disabled}}' wx-if='{{systemBusy}}' >提到微信钱包</button>
+    <view style='height:20rpx;'></view>
+    <view class='swiper-view2'>
+      <navigator class='swiper-view2-navigator' url='./cashrecord'>{{home_menu_data.home_0006}}明细</navigator>
+    </view>
+  </view>
+  <view class='bottom'>
+      <view class='bottom-row1'>微信{{home_menu_data.home_0006}}说明：</view>
+      <view style='height:20rpx;'></view>
+      <view class='bottom-row1'>1.{{home_menu_data.home_0006}}金额最低{{minWithdrawAmount}}元;</view>
+      <!-- <view style='height:20rpx;'></view>
+      <view class='bottom-row1'>1.{{home_menu_data.home_0006}}金额最低{{minWithdrawAmount}}元;</view> -->
+      <view style='height:20rpx;'></view>
+      <view class='bottom-row1'>2.申请{{home_menu_data.home_0006}}后预计会在{{wx_deadLine==null||wx_deadLine==""?'10分钟内到账':wx_deadLine}};</view>
+      <view style='height:20rpx;'></view>
+      <view class='bottom-row2'>3.{{home_menu_data.home_0006}}打款至微信钱包(微信需要已通过银行卡实名认证)</view>
+    </view>
+ </swiper-item> 
+ <swiper-item> 
+  <view wx:if='{{user.bankCardNumber==null || user.bankCardNumber ==""}}' class='swiper-item2-view1'>
+    <view style='height:50rpx;'></view>
+    <image src='./icon/img_wubangding.png' style='width:150rpx;height:150rpx;'></image>
+    <view style='height:20rpx;'></view>
+    <view style='color:#333333;height:20rpx;'>您还未绑定银行卡，点击下方按钮添加吧</view>
+    <view style='height:110rpx;'></view>
+    <view class='add' bindtap='goBindbankcard'>
+      <image src='./icon/btn_tianjia.png' style='width:100rpx;height:100rpx;'></image>
+    </view>
+    <view style='height:50rpx;'></view>
+  </view>
+  <view wx:else class='swiper-item2-view2'>
+    <view class='swiper-item2-view2-view1'>
+      <view class='swiper-item2-view2-view1-row1'>
+        <view class='swiper-item2-view2-view1-row1-row'>
+          <image src='./icon/icon_yinhangka_dis.png' style='height:40rpx;width:58rpx;'></image>
+          <text style='width:10rpx;'></text>
+          <text style='color:#999999;'>{{user.bankName}}({{bankCardNumber}})</text>
+        </view>
+      </view>
+      <view class='swiper-view1-row2'>
+        <view class='swiper-view1-row2-row' style='border-bottom:0.5rpx #cdcdcd solid;'>
+          <text style='width:10%;height:80rpx;line-height:80rpx;'>￥</text>
+          <input type='digit' style='width:90%;height:80rpx;' bindinput='setBankMoney' value='{{bankMoney}}'></input>
+        </view>
+      </view>
+      <view class='swiper-item2-view2-view1-row2'>
+        <view class='swiper-view1-row3-row'>
+          <view class='swiper-view1-row3-row-row1'>
+            <text style='color:#999999;font-size:32rpx;'>{{home_menu_data.home_0002}}余额(元):</text><text style='color:#333333;font-size:32rpx;'>{{capital}}</text>
+          </view>
+          <view class='swiper-view1-row3-row-row2' bindtap='getAllMoney'>全部{{home_menu_data.home_0006}}</view>
+        </view>
+      </view>
+    </view>
+    <view style='height:70rpx;'></view>
+    <view class='swiper-btn' bindtap='bankMoney'>提到银行卡</view>
+    <view style='height:20rpx;'></view>
+    <view class='swiper-view2'>
+      <navigator class='swiper-view2-navigator' url='./cashrecord'>{{home_menu_data.home_0006}}明细</navigator>
+    </view>
+  </view>
+  <view class='bottom'>
+      <view class='bottom-row1'>银行卡{{home_menu_data.home_0006}}说明：</view>
+      <view style='height:20rpx;'></view>
+      <view class='bottom-row1'>1.{{home_menu_data.home_0006}}金额最低{{miniBankWithdrawAmount}}元;</view>
+      <view style='height:20rpx;'></view>
+      <view class='bottom-row1'>2.申请{{home_menu_data.home_0006}}后预计会在{{bank_deadLine==null||bank_deadLine==""?'2个工作日内到账':bank_deadLine}};</view>
+      <view style='height:20rpx;'></view>
+      <view class='bottom-row2'>3.请确保银行卡开户人姓名和身份证一致,否则将转账失败</view>
+    </view>
+ </swiper-item>
+</swiper> 
+<loading hidden="{{wechatbool?'hidden':''}}">
+  {{home_menu_data.home_0006}}中...
+</loading>
+<loading hidden="{{bankbool?'hidden':''}}">
+  {{home_menu_data.home_0006}}中...
+</loading>
+</view>

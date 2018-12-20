@@ -1,0 +1,84 @@
+<!--pages/login/taobao/Auditing/Auditing.wxml-->
+<view class='headers'>
+  <view class='headers-box'>
+    <text class='headers-box-text1'>1.邀请注册</text>
+    <text class='headers-box-text3'>2.账号绑定</text>
+    <text class='headers-box-text2'>3.等待审核</text>
+  </view>
+</view>
+<view class='show-view' hidden="{{hide}}">
+  <view class='show-view-flex1'>
+    <view style='height:50rpx;' />
+    <image src='./icon/icon_tijaochenggong.png' mode='widthFix' style='width:124rpx;' />
+     <view style='height:20rpx;' /> 
+    <text class='show-view-flex1-text'>已提交成功</text>
+    <view style='height:50rpx;' />
+    <view class='show-view-flex1-text2'>
+      <image src='./icon/icon_yaoqingtishi.png' style='width:40rpx;height:40rpx;'></image>
+      <view style='width:14rpx;'></view>
+      <text>审核员会根据您拍下的淘宝号自动绑定该账号哦！</text>
+    </view>
+  </view>
+  <text class='show-view-flex2-timer'>审核结果将通知到您的手机短信</text>
+  <view style='height:24rpx;' />
+  <view class='show-view-flex4'>
+    <view class='show-view-flex4-view'>
+      <view style='height:32rpx;' />
+      <!-- <view class='show-view-flex4-view1'>
+        <text>审核员将在</text>
+        <text style='color:#f54747'>{{last_format}}</text>
+        <text>前对账户"</text>
+        <text style='color:#f54747'>{{user.mobile}}</text>
+        <text>"的淘宝账号审核完毕</text>
+      </view>
+      <view style='height:32rpx;' />
+      <view class='show-view-flex4-view2'>
+        <view class='show-view-flex4-radius'>1</view>
+        <view style='width:24rpx;'></view>
+        <view>审核付款的店铺和链接是否正确</view>
+      </view>
+      <view style='height:32rpx;' />
+      <view class='show-view-flex4-view2'>
+        <view class='show-view-flex4-radius'>2</view>
+        <view style='width:24rpx;'></view>
+        <view>审核付款账号的金额是否正确</view>
+      </view>
+      <view style='height:32rpx;' />
+      <view class='show-view-flex4-view2'>
+        <view class='show-view-flex4-radius'>3</view>
+        <view style='width:24rpx;'></view>
+        <view>核对付款方式以及要求是否符合</view>
+      </view>
+      <view style='height:32rpx;' /> -->
+       <text class='show-view-flex2-timer'>预计在<text style='font-weight: bold;color:#333333;'>{{last_format}}</text>完成审核</text> 
+    </view>
+  </view>
+  <!-- <view class='show-view-flex2'>
+    <view style='height:24rpx;' />
+    <view class='show-view-flex2-view'>
+      <view class='show-view-flex4-radius2'>!</view>
+      <view style='width:24rpx;'></view>
+      <view>如果系统审核失败还有一次修改机会</view>
+    </view>
+  </view> -->
+  <view style='height:50rpx;' />
+  <view class='show-view-flex3'>
+    <button class='show-view-flex3-btn' bindtap='toHome' wx:if='{{user.bindStatus != 1 && user.bindStatus != 4}}'>知道了</button>
+    <view style='height:20rpx;' />
+  </view>
+</view>
+
+
+<view class='show-view' hidden="{{!hide}}">
+  <view class='show-view-flex1'>
+    <view style='height:50rpx;' />
+    <image src='./icon/false.png' mode='widthFix' style='width:124rpx;' />
+     <view style='height:20rpx;' /> 
+    <text class='show-view-flex1-text'>提交失败</text>
+    <view style='height:50rpx;' />
+    <view class='show-view-flex1-text2'>
+      <view style='width:14rpx;'></view>
+      <text>根据您的综合信息评估，您暂不符合我们平台的要求</text>
+    </view>
+  </view>
+</view>

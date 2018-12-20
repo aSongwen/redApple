@@ -1,0 +1,74 @@
+.wrap{
+	width:100%;
+	font-size:28rpx;
+}
+.personData{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height:160rpx;
+	border-bottom: 10rpx solid #efeff4;
+}
+.personName{
+	font-size:30rpx;
+	color:#666;
+	font-weight: bold;
+  margin-bottom:30rpx;
+}
+.personID{
+  font-size:28rpx;
+  color:#666;
+}
+.personNum{
+	font-size:48rpx;
+	color:#008204;
+	font-weight: bold;
+}
+.content .picker{
+   width:215rpx;
+   border: 2rpx solid #aaa;
+   font-size: 32rpx;
+   position: relative;
+   border-radius: 10rpx;
+   padding: 10rpx;
+   margin-top: 20rpx;
+}
+.content .picker::before{
+   content: '';
+   width:0;
+   height:0;
+   position: absolute;
+   right:15rpx;
+   top:25rpx;
+   border-top: 15rpx #aaa solid;
+   border-left: 15rpx #fff solid;
+   border-right: 15rpx #fff solid;
+
+}
+.detailTitle{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 60rpx;
+	color:#666;
+  font-size:26rpx;
+  border-bottom:2rpx solid #e5e5e5;
+}
+.detailtask{
+	background:#fff;
+	height:90rpx;
+	border-bottom:2rpx solid #e5e5e5; 
+	color:#333;
+}
+.detailtask > view{
+  width:50%;
+  text-align:center;
+}
+.taskTime{
+	width:150rpx;
+  margin-left:-15rpx;
+  font-size:26rpx;
+  color:#666;
+  font-weight:bolder
+
+}

@@ -1,0 +1,31 @@
+<!--pages/dispatch/cancel.wxml-->
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100vh;background-size:100%;">
+<view class='show-view' style='height:{{height}}px;width:{{width}}'>
+  <!--<view class='show-view-row1'>
+    <image src='./icon/icon_paidanshibai.png' style='height:122rpx;width:118rpx'></image>
+    <view style='height:10rpx;'></view>
+    <text class='show-view-row1-text'></text>
+  </view>-->
+  <view class='show-view-row2'>
+    <text class='show-view-row2-text'>选择取消原因</text>
+  </view>
+  <radio-group class="radio-group">
+    <view class='radio-group-row' wx:for="{{taskType == 0 ? items : flowitems}}" wx:key='1' style='height:{{height * 0.5 / 6}}px'  bindtap="radioChange" data-id='{{item.checked}}'>
+      <view style='width:3%;' data-id='{{item.checked}}'></view>
+      <view class="{{item.is_now?'radio-group-rows1':'radio-group-rows2'}}" data-id='{{item.checked}}'>
+        <view class='radio-group-row-radio1' data-id='{{item.checked}}'>
+          <radio value="{{item.name}}" checked="{{item.checked == checkd?'checked':''}}" data-id='{{item.checked}}' />
+        </view>
+        <view class='radio-group-row-radio2' data-id='{{item.checked}}'>
+          <text class='radio-group-row-text' data-id='{{item.checked}}'>{{item.value}}</text>
+        </view>
+      </view>
+    </view>
+  </radio-group>
+  <view style='height:50rpx;' />
+  <button class='show-view-btn' bindtap='toHome'>申请取消并派送给其他用户</button>
+</view>
+<loading hidden="{{loading?'hidden':''}}">
+  取消{{home_menu_data.persion_0003}}中...
+</loading>
+</view>

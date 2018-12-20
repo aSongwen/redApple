@@ -1,0 +1,87 @@
+<wxs module="filters" src="../number.wxs"></wxs>
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100%;background-size:100%;">
+<view class='header' style='widht:{{width}}px;'>
+  <view class='header-toprow'>
+    <view style='width:5%;'></view>
+    <text class='header-toprow-text'>{{home_menu_data.home_0001}}收益(元)</text>
+  </view>
+  <view class='header-bottomrow'>
+    <view class='header-bottomrow-row1'>
+      <text class='header-bottomrow-row1-text'>{{commission}}</text>
+    </view>
+    <view class='header-bottomrow-row2'>
+      <navigator class='header-bottomrow-row2-navigator' url='./cash'>
+        <view class='header-bottomrow-row2-navigator-text'>{{home_menu_data.home_0006}}</view>
+        <!-- <view style='width:20rpx;'></view> -->
+        <!-- <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;'></image> -->
+      </navigator>
+    </view>
+  </view>
+</view>
+<view class="moreContent-top" style="padding:0 20rpx;">
+  <view class="typeFifter">类型筛选</view>
+  <view class="all">全部</view>
+</view>
+<view class='show-view' style='widht:{{width}}px;' wx:for='{{tasklist}}' wx:key='1' bindtap='navToDetails' data-id='{{index}}'>
+ <!-- wx:if='{{item.financeItemCode!=16}}' -->
+  <view class='show-view-column1'>
+    <view style='width:5%;float:left;height:100%;'></view>
+    <view class='show-view-column1-row1' wx:if='{{item.financeItemCode==11}}'>{{home_menu_data.home_0008}}</view>
+    <view class='show-view-column1-row1' wx:if='{{item.financeItemCode==12}}'>管理员操作</view>
+    <view class='show-view-column1-row1' wx:if='{{item.financeItemCode==13}}'>指定评价{{home_menu_data.home_0001}}</view>
+    <view class='show-view-column1-row1' wx:if='{{item.financeItemCode==14}}'>{{home_menu_data.home_0007}}</view>
+    <view class='show-view-column1-row1' wx:if='{{item.financeItemCode==15}}'>系统奖励</view>
+     <view class='show-view-column1-row1' wx:if='{{item.financeItemCode==16}}'>{{home_menu_data.home_0011}}</view> 
+    <view class='show-view-column1-row1' wx:if='{{item.financeItemCode==17}}'>{{home_menu_data.home_0009}}</view>
+    <view class='show-view-column1-row1' wx:if='{{item.financeItemCode==20}}'>投诉扣款{{home_menu_data.home_0001}}</view>
+    <!-- <view class="{{item.amount>0?'show-view-column1-row2':'show-view-column1-row3'}}">{{item.amount}}</view> -->
+     <view class="{{item.auditStatus == 2?'show-view-status' :'show-view-status1'}}">{{item.auditStatus==1?'处理中':item.auditStatus==2?'审批成功':item.auditStatus==3?'审批拒绝':''}}</view>
+    <view class="{{item.coin>0?'show-view-column1-row2':'show-view-column1-row3'}}" wx:if='{{item.coin != null && item.financeItemCode!=11}}'>{{filters.getNum(item.coin)}}</view>
+    <view class="{{item.coin>0?'show-view-column1-row2':'show-view-column1-row3'}}" wx:if='{{item.financeItemCode==11}}'>{{filters.getNum(item.coin)}}</view>
+    <!-- <view style='width:5%;'></view> -->
+  </view>
+   <view class='show-view-column3'>
+    <view class='backNum' wx:if="{{item.financeItemCode==11||item.financeItemCode==13||item.financeItemCode==20}}">{{home_menu_data.persion_0003}}号:{{item.taskId}}</view>
+    <view class='backNum' wx:if="{{item.financeItemCode==14}}">{{home_menu_data.persion_0001}}ID:{{item.promoterCode}}</view>
+    <view class="backNum" wx:if="{{item.financeItemCode==15}}">签到随机奖励</view>
+    <view class="backNum" wx:if="{{item.financeItemCode==17&&item.tradingType==3}}">银行卡{{item.card}}</view>
+    <view class="backNum" wx:if="{{item.financeItemCode==17&&item.tradingType==2}}">微信钱包</view>
+    <view class='leftMoney'>余额：{{filters.getNum(item.current_amount!=null?item.current_amount:0)}}</view>
+  </view>
+  <view class='show-view-column2'>
+    <view class='show-view-column2-column2'>
+      <view style='width:10%;'></view>
+      <view>{{item.gmtTime}}</view>
+    </view>
+    <view class='show-view-column2-column1'>
+      <view style='width:10%;'></view>
+      <view>查看详情2</view>
+    </view>
+  </view>
+</view>
+<view class='refreshBottom' hidden="{{!searchLoading?'hidden':''}}">
+  加载中...
+</view>
+  <!--弹窗内容-->
+    <view wx:if="{{moreFiltrate}}" id="moreFiltrate">
+      <view class="displayNone" bindtap="moreFiltrate = false"></view>
+      <view class="moreFiltrate">
+        <view class="moreContent">
+          <view class="moreContent-top">
+            <view class="typeFifter1">类型筛选</view>
+            <view class="all">全部</view>
+          </view>
+          <view class="moreContent-main">
+            <view class="tit">选择交易类型</view>
+            <view class="type">
+              <view class="typeOne {{item.isSelected ? 'on' : ''}}" wx:for="{{ typeList}}" bindtap="choseType" v-bind:class="{on:index==light}" data-id='{{index}}' data-code='{{item.code}}' data-isSelected ='{{item.isSelected }}'>{{item.type}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="lastBtn">
+          <view>重置</view>
+          <view>确定</view>
+        </view>
+      </view>
+    </view>
+</view>

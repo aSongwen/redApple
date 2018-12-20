@@ -1,0 +1,75 @@
+<view class='headers'>
+  <view class='headers-box'>
+    <text class='headers-box-text1'>1.邀请注册</text>
+    <text class='headers-box-text2'>2.账号绑定</text>
+    <text class='headers-box-text3'>3.等待审核</text>
+  </view>
+</view>
+<view style='height:{{height-60}}px;width:{{width}}px' class='show-view'>
+  <view class='show-view-flex1'>
+    <view class='show-view-flex1-row1'>
+      <text class='show-view-flex1-row2-text'>什么是淘口令?</text>
+      <view style="width:100%;height:50rpx;"></view>
+    </view>
+    <view class='show-view-flex1-row2'>
+      <view style='height:30%;float:left;width:50rpx;margin-right:28rpx;'>
+        <text class='show-view-flex1-row1-text'>1</text>
+      </view>
+      <view style='float:left;margin-bottom:24rpx;'>
+        <input class='show-view-flex1-row2-input' placeholder="{{taokouling==null?'获取淘口令中':'淘口令' + taokouling}}" disabled='true' />
+      </view>
+
+      <view>
+        <button class='show-view-flex1-row2-button' bindtap='copyTKL' disabled='{{taokouling==null?true:false}}' disabled='{{tklbool}}'>复制淘口令并打开淘宝</button>
+      </view>
+    </view>
+  </view>
+  <view style="height:50rpx;"></view>
+  <view class='show-view-flex2'>
+    <view class='show-view-flex2-column'>
+      <view class='show-view-flex2-column-row1'>
+        <text class='show-view-flex1-row1-text'>2</text>
+      </view>
+      <view class='show-view-flex2-column-row1' />
+    </view>
+    <view class='show-view-flex1-column2'>
+      <view class='show-view-flex2-column2-row1'>
+        用您的淘宝账号拍下<text class='show-view-flex1-row1-text'>1</text>步打开的商品
+      </view>
+      <view style="height:36rpx;"></view>
+      <view class='show-view-flex2-column2-row2'>
+        <text class='show-view-flex2-column2-row2-text1'>只需拍下，不用付款！</text>
+      </view>
+    </view>
+  </view>
+  <view style="height:80rpx;"></view>
+  <view class='show-view-flex3'>
+    <view class='show-view-flex2-column'>
+      <view class='show-view-flex3-column-row1'></view>
+      <view class='show-view-flex3-column-row2'>
+        <text class='show-view-flex1-row1-text'>3</text>
+      </view>
+    </view>
+    <view class='show-view-flex1-column2'>
+      <view class='show-view-flex3-column2-row1'>
+        <text class='show-view-flex1-row2-text'>哪里复制订单号?</text>
+      </view>
+      <view class='show-view-flex3-column2-row2'>
+        <input class='show-view-flex3-column2-row2-input' value='{{order}}' type='number' placeholder='粘贴已拍下的订单号' bindinput='changeCode' maxlength='30'></input>
+        <button class='show-view-flex3-column2-row2-button' bindtap='getClipboardData' wx:if="{{canIUse}}" open-type="getClipboardData">粘贴</button>
+      </view>
+    </view>
+  </view>
+  <view class='show-view-flex4'>
+    <button class='show-view-flex4-button' bindtap='nextAuditing'>确认并绑定</button>
+    <view style='height:10rpx;' />
+    <view class='show-view-flex4-row'>
+      <text class='show-view-flex4-row-text'>!</text>
+      <text style='width:20rpx;' />
+      <text class='show-view-flex4-row-text2'>审核人员会根据您拍下淘宝号自动绑定该账号哦！</text>
+    </view>
+  </view>
+</view>
+<loading hidden="{{loading?'':'hidden'}}">
+  提交中...
+</loading>

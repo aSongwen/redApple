@@ -1,0 +1,167 @@
+<wxs module="filters" src="../number.wxs"></wxs>
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100vh;background-size:100%;overflow: hidden">
+  <view class='headers' style='width:{{screen_width}};z-index:22;'>
+    <view class='headers-row'>
+      <view class='notics-view-row1'>
+        <image src='./icon/icon_gonggao.png' style='height:24rpx;width:24rpx;margin-right:5rpx' />
+        <text style='font-weight:bold;color:#666;font-size:26rpx'>公告</text>
+      </view>
+      <view class='notics-view-row2'>
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="7000" duration="5000" circular='{{circular}}' style='height:100rpx;' bindtap="bindViewTap">
+          <block wx:key="0" wx:for="{{notics_text}}">
+            <swiper-item>
+              <text>{{notics_text[index].title}}</text>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+  </view>
+  <view class="userinfo-show" style='width:{{screen_width}}'>
+    <view class='userinfo-show-column1'>
+      <view class='userinfo-show-avatar' wx:if="{{user == null}}">
+        <image class="userinfo-avatar" src="/pages/home/icon/img_touxiang.png" background-size="cover"></image>
+      </view>
+      <!-- <view class='userinfo-show-bshow' wx:if="{{user == null}}">
+         <view>还没登录?</view>
+         <view style='color:#f5b647;'>
+           去
+           <text class='userinfo-bshow-text' bindtap='login'>登录</text> /
+           <text class='userinfo-bshow-text' bindtap='register'>注册</text>
+         </view>
+       </view> -->
+      <view class='userinfo-show-avatar' wx:if="{{user != null}}">
+        <image class="userinfo-avatar" src="{{userinfo!=null&&userinfo.avatarUrl!=null?userinfo.avatarUrl:wx_headImage!=null&&wx_headImage!=''?wx_headImage:'/pages/home/icon/img_touxiang.png'}}" background-size="cover" />
+      </view>
+      <view class='userinfo-show-bshow2'>
+        <view style='height:30rpx;'></view>
+        <text class="userinfo-nickname">{{user.mobile}}</text>
+        <view style='height:10rpx;'></view>
+        <text class="userinfo-id">ID:{{user.code}}</text>
+        <view style='height:10rpx;'></view>
+        <text class="userinfo-id" wx:if="{{user.refereCode != null}}">您的{{home_menu_data.home_0003}}:{{user.refereCode}}</text>
+      </view>
+      <view class='userinfo-show-sign' wx:if="{{user != null}}">
+        <!-- <navigator class='userinfo-show-sign-flex' url='../sign/sign'>
+          <image src="./icon/icon_qiandao.png" style='height:50rpx;width:50rpx;'></image>
+          <view style='width:10rpx;'></view>
+          <text>签到有礼</text>
+        </navigator> -->
+      </view>
+    </view>
+    <view class='userinfo-show-column2'>
+      <view class='userinfo-show-row'>
+        <navigator class='userinfo-show-row1' url='{{withdrawType==2?"../commission/commission2":"../commission/commission"}}' wx:if="{{user != null}}">
+          <view style='height:16rpx;'></view>
+          <text class='userinfo-show-row-text1'>{{home_menu_data.home_0001}}2收益(元)</text>
+          <view style='height:10rpx;'></view>
+          <text class='userinfo-show-row-text2' wx:if="{{moneys != null}}">{{filters.getNumNo(money.commission)}}</text>
+          <text class='userinfo-show-row-text2' wx:else>0.00</text>
+        </navigator>
+        <view class='userinfo-show-row1' wx:if="{{user == null}}">
+          <view style='height:16rpx;'></view>
+          <text class='userinfo-show-row-text1'>{{home_menu_data.home_0001}}收益(元)</text>
+          <view style='height:10rpx;'></view>
+          <text class='userinfo-show-row-text2'>0.00</text>
+        </view>
+        <!--<view class='userinfo-show-row2'>
+          <view class='userinfo-show-border'></view>
+        </view>-->
+        <navigator class='userinfo-show-row1' url='{{withdrawType ==2?"../capital/capital2":"../capital/capital"}}' wx:if="{{user != null}}">
+          <view style='height:16rpx;'></view>
+          <text class='userinfo-show-row-text1'>{{home_menu_data.home_0002}}总计(元)</text>
+          <view style='height:10rpx;'></view>
+          <text class='userinfo-show-row-text2' wx:if="{{moneys != null}}">{{filters.getNumNo(money.capital)}}</text>
+          <text class='userinfo-show-row-text2' wx:else>0.00</text>
+        </navigator>
+        <view class='userinfo-show-row1' wx:if="{{user == null}}">
+          <view style='height:16rpx;'></view>
+          <text class='userinfo-show-row-text1'>{{home_menu_data.home_0002}}总计(元)</text>
+          <view style='height:10rpx;'></view>
+          <text class='userinfo-show-row-text2'>0.00</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="todayNum">
+    <view class="todayList">
+      <view>今日{{home_menu_data.home_0001}}：{{todayCoin != null?filters.getNumNo(todayCoin):'---'}}</view>
+      <image bindtap="todayCoin" src="icon/refresh.png"></image>
+    </view>
+    <view class="todayList">
+      <view>累计{{home_menu_data.home_0001}}：{{totalCoin != null ? filters.getNumNo(totalCoin): '---'}}</view>
+      <image bindtap="totalCoin" src="icon/refresh.png"></image>
+    </view>
+  </view>
+  <view class="taskTabs">
+    <view class="tasklist {{taskTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichTab">下单任务</view>
+    <view class="tasklist {{taskTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichTab">浏览任务</view>
+  </view>
+  <!-- <view style='height:20rpx;width:100%;'></view> -->
+  <!--<view class='swiper-image' style='width:{{screen_width}}'>
+    <swiper indicator-dots="{{indicatorDots2}}" indicator-active-color='gray' autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='{{circular}}' class='swiper-view'>
+      <block wx:key="1" wx:for="{{imgUrls}}">
+        <swiper-item>
+          <navigator url="{{item.link}}" hover-class="navigator-hover">
+            <image src="{{item.fileUrl}}" background-size='100%,100%' style='height:220rpx;width:100%' />
+          </navigator>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view> -->
+
+  <view class='progress'>
+    <view class='progress1 progress2' wx:for="{{plan}}" style="{{item.look}}">
+      <view>
+        <text class='dayplan'>{{item.text}}</text>
+      </view>
+      <view>
+        <text class='weekplan'>{{item.num}}</text><text class='monthplan'>/{{item.num1}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='show-view' style='width:{{screen_width}};height:100vh;'>
+    <view style='width:{{screen_width/3}}px;'>
+      <view class='show-view-row1' bindtap='toTaking' hidden="{{taskTab==1}}">
+        <image src='./icon/icon_shezhi.png' style='height:50rpx;width:50rpx;'></image>
+        <text class='show-view-text1'>{{home_menu_data.home_0005}}设置</text>
+      </view>
+    </view>
+    <view class='show-view-btn-bottom' style='width:{{screen_width/3}}px;'>
+      <button class='show-view-btn' wx:if="{{user != null}}" hidden='{{taking}}' bindtap='getTaking'>{{home_menu_data.home_0005}}</button>
+      <text class='show-view-btn' wx:if="{{user != null}}" hidden='{{!taking}}'>{{home_menu_data.home_0005}}中</text>
+      <text hidden='{{!taking}}' style='color:#999999;'>{{last_time}}</text>
+    </view>
+    <view class='show-view-btn-column' style='width:{{screen_width/3}}px;'>
+      <!--<view class="self-motion" hidden="{{taskTab==1}}">
+        <view class="tit">自动接单</view>
+        <view class="body-view">
+          <switch bindchange="switch2Change" color="#47a1f5"/>
+        </view>
+      </view>-->
+      <view class='show-view-btn-row'>
+        <view class='show-view-btn-block' bindtap='stopTaking'>
+          <text class='show-view-btn2' hidden='{{!taking}}'>停止</text>
+          <!--<image src='./icon/icon_tingzhijiedan.png' style='height:30rpx;width:30rpx;' hidden='{{!taking}}'></image>
+          <text class='show-view-btn-text' wx:if="{{user != null}}" hidden='{{!taking}}'>停止</text>-->
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 测试用按钮，完成时请去掉或注释掉 -->
+  <loading hidden="{{loading?'':'hidden'}}">
+    加载中...
+  </loading>
+</view>
+<!-- <navigator url='../login/taobao/Auditing/Auditing'>审核页面</navigator>
+<navigator url='../login/taobao/taobao'>操作订单页</navigator>
+ <navigator url='../home/task/revision-task/revision-task'>修正订单页</navigator>
+<view bindtap='deleteToken' style='font-size:40rpx;height:80rpx;width:100%;'>111</view> -->
+<!-- <navigator url='../login/login'>邀请注册</navigator>
+ <navigator url='../../demo/demo4'>demo</navigator> 
+<view bindtap='deleteToken' style='font-size:40rpx;height:80rpx;width:100%;'>111</view> -->
+<!-- 测试用订单号：115315510749609656 -->
+<!-- <view bindtap='deleteToken' style='font-size:40rpx;height:80rpx;width:100%;'>用户退出</view>    -->
+<!-- <navigator url='./task/Auditing/Auditing'>审核页面</navigator>   -->
+<!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机授权</button>  -->

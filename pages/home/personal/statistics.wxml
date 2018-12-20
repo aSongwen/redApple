@@ -1,0 +1,93 @@
+<!--pages/home/personal/statistics.wxml-->
+<view class="wrap">
+	<!--<view class="wrap-top">-->
+  		<!--<view data-current="1" bindtap="swichNav" class="swichNav {{currentTab==1 ? 'on' : ''}}">{{preMonth}}月</view>-->
+		<!--<view data-current="0" bindtap="swichNav" class="swichNav {{currentTab==0 ? 'on' : ''}}">{{currentMonth}}月</view>-->
+		<!--<view bindtap="filtrate" class="swichNav {{filtrateTab ? 'on' : ''}}">更多筛选</view>-->
+	<!--</view>-->
+	<view class="taskTabs">
+		<view class="tasklist {{taskTab==0 ? 'on1' : ''}}" data-current="0" bindtap="swichTab">下单任务</view>
+		<view class="tasklist {{taskTab==1 ? 'on1' : ''}}" data-current="1" bindtap="swichTab">浏览任务</view>
+	</view>
+	<scoll-view class="wrap-middle" scroll-y="{{isScroll}}">
+		<view class="showTime">
+			<view>
+				<view wx:if="{{totalShow}}">{{getYears}}年{{currentMonths}}月</view>
+				<view hidden="{{totalShow}}">累计</view>
+			</view>
+			<view class="moreBtn" bindtap="filtrate">
+				<view>更多筛选</view>
+			</view>
+			<view class="export" bindtap="export">导出Excel</view>
+		</view>
+		<view class="commissionMoney">
+			<view class="money-left">
+				<text class="money-left-text1">{{home_menu_data.statics_0001}}笔数(笔)</text>
+                <view style="height:10px;"></view>
+                <text class="money-left-text2">{{getRefereeSum == null ? 0 : getRefereeSum}}</text>
+			</view>
+			<view class="money-left">
+				<text class="money-left-text1">{{home_menu_data.statics_0001}}金额(元)</text>
+                <view style="height:10px;"></view>
+                <text class="money-left-text2" wx:if="{{getRefereeMoney == 0 ||getRefereeMoney == null}}">0</text>
+                <text class="money-left-text2" wx:else>¥{{getRefereeMoney}}</text>
+			</view>
+		</view>
+		<view class="apprentice" wx:for="{{taskCompleted}}" wx:key='unique' bindtap="goDetails" data-promoter-id="{{item.promoterId}}">
+			<view style="width:280rpx;"> 
+				<text class="interval">{{item.realName == null ? "" : item.realName }}</text>
+				<text class="{{item.realName == null? 'interval1' : 'interval'}}">(ID:{{item.code}})</text>
+			</view>
+			<view class="progress"><progress  percent="{{item.percent}}" stroke-width="6" activeColor="{{item.pc}}" active="true" active-mode="forwards" backgroundColor="#fff">
+			</progress></view>
+			<view style="margin-right:20rpx;">{{item.taskNum}}笔</view>
+		</view>
+		<view class="Nodata" wx:if="{{NoData || taskCompleted.length == 0}}">暂无数据</view>
+		<view wx:if="{{searchLoading}}" class="Nodata" >上拉加载</view>
+		<loading hidden="{{hiddenLoading}}">正在加载</loading>
+	</scoll-view>
+	<!--筛选弹窗-->
+	<view class="more" hidden="{{moreScreening}}">
+		<view class="modal-box" bindtap="hide">
+		</view>
+		<view class="modal-content">
+			<view class="top">
+        		<text class="model-title">筛选</text>
+				<image src="../icon/close.png" bindtap="hide"></image>
+			</view>
+			<view class="content">
+				<view class="searchPeople">查询时间</view>
+        <view style='display:flex;'>
+            <picker mode="date" value="{{date}}" fields="month" start="{{date2}}" end="{{date1}}" bindchange="bindDateChange" style="width:200rpx;display:inline-block;">
+              <view class="picker">
+              {{date}}
+              </view>
+            </picker>
+          <view bindtap="isChose" class="{{totalChose ? 'total2' : 'total'}}">
+            累计
+          <image wx:if="{{totalChose}}" src="../icon/gou.png"></image>
+          </view>
+        </view>
+				
+				<view class="searchPersonnel">
+					<view style="" class="searchPeople">查询人员</view>
+					<input bindinput="bindKeyInput" value="{{inputValue}}" placeholder="请输入ID/手机号/姓名/备注"/>
+					<text class="warning" wx:if="{{warning}}">请输入查询人员的类型</text>
+				</view>
+			</view>
+			<view class="submitButton">
+				<div bindtap="filtrate"> 重置 </div>
+				<div bindtap="submit"> 确定 </div>
+			</view>
+		</view>
+	</view>
+	<!--导出弹框-->
+	<view class="modal-box" bindtap="hideModal" wx:if="{{background}}"></view>
+	<view class="modal-dialog" wx:if="{{showModal}}">
+	  <view class="modal-title">请复制到电脑浏览器，下载查阅EXCEL</view>
+	  <view class="modal-footer">
+	    <view class="btn-confirm" bindtap="copyLink">复制链接</view>
+	    <view class="btn-cancel" bindtap="onCancel">取消</view>
+	  </view>
+	</view>
+</view>

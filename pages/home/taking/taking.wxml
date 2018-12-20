@@ -1,0 +1,63 @@
+<!--pages/home/taking/taking.wxml-->
+<view style="background: url({{backgroundUrl}}) repeat;width:100%;height:100vh;background-size:100%;">
+<view class='show-view' style='width:{{width}}'>
+  <view class='show-view-row'>
+    <view class='show-view-leftRow'>
+      <text class='show-view-leftRow-text'>{{home_menu_data.persion_0003}}类型</text>
+    </view>
+    <view class='show-view-rightRow'>
+      <navigator url="../outurl/taskTypes" class='show-view-rightRow-text'>
+        <text>?</text>
+      </navigator>
+    </view>
+  </view>
+  <view class='show-view-row2'>
+    <view class='show-view-row2-btn'>
+      <text class="{{selected_id == 1?'show-view-row2-btn-text1':'show-view-row2-btn-text2'}}" data-id='1' bindtap='selected'>全部{{home_menu_data.persion_0003}}</text>
+    </view>
+    <view class='show-view-row2-btn'>
+      <text class="{{selected_id == 2?'show-view-row2-btn-text1':'show-view-row2-btn-text2'}}" data-id='2' bindtap='selected'>普通{{home_menu_data.persion_0003}}</text>
+    </view>
+    <view class='show-view-row2-btn'>
+      <text class="{{selected_id == 3?'show-view-row2-btn-text1':'show-view-row2-btn-text2'}}" data-id='3' bindtap='selected'>特别{{home_menu_data.persion_0003}}</text>
+    </view>
+  </view>
+  <view style='height:20rpx;'></view>
+  <view class='show-view-row'>
+    <view class='show-view-leftRow'>
+      <text class='show-view-leftRow-text'>{{home_menu_data.persion_0003}}金额</text>
+    </view>
+    <view class='show-view-rightRow'>
+      <navigator class='show-view-rightRow-text' url="../outurl/taskFee">
+        <text>?</text>
+      </navigator>
+    </view>
+  </view>
+  <view class='show-view-row3'>
+    <view class='show-view-row3-column'>
+      <view class='show-view-row3-column-row1'>
+        <text class='show-view-row3-column-row1-text'>最高金额(￥)</text>
+      </view>
+      <view class='show-view-row3-column-row2'>
+         <!-- <view class='show-view-row3-column-row2-view'>
+          <input class='show-view-row3-column-row2-input' type='number' placeholder-style='color: #bbbbbb;' placeholder='最低价' value='{{moneys.minTaskMoney}}' bindinput='setMin'/>
+        </view> -->
+        <view class='show-view-row3-column-row2-view'>
+           <input class='show-view-row3-column-row2-input' style="background-color:#C0C0C0;" type='number' placeholder-style='color: #bbbbbb;' placeholder='最低价' value='0' bindinput='setMin' disabled/> 
+        </view>
+        <text class='show-view-row3-column-row2-text'>~</text> 
+        <view class='show-view-row3-column-row2-view'>
+          <input class='show-view-row3-column-row2-input' type='number' placeholder-style='color: #bbbbbb' placeholder='最高价' value='{{moneys.maxTaskMoney}}' bindinput='setMax'/>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style='height:100rpx;' />
+  <view class='show-view-row4'>
+    <button class='show-view-row4-btn' bindtap='saveConfig' disabled='{{!loading}}'>保存</button>
+  </view>
+</view>
+</view>
+<loading hidden="{{loading?'hidden':''}}">
+  保存中...
+</loading>

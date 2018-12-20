@@ -1,0 +1,282 @@
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100%;background-size:100%;">
+<view style='height:auto;width:{{width}}px;' class='show-view'>
+  <view class="headers">
+    <view class='headerows-row1'>
+      <image src='../../icon/icon_daojishi.png' style='height:50rpx;width:50rpx;'></image>
+    </view>
+    <view class='headerows-row2'>
+      <view class='headerows-row2-column1'>
+        <text>{{home_menu_data.persion_0003}}倒计时:{{date}}</text>
+      </view>
+      <view class='headerows-row2-column2'>
+        <text>注意：只有一次修改机会</text>
+      </view>
+    </view>
+    <view class='headerows-row3'>
+      <view class='headerows-row3-btn' bindtap='showDialogBtn'>
+        <text>放弃{{home_menu_data.persion_0003}}</text>
+      </view>
+    </view>
+  </view>
+  <view style='height: 100rpx;'></view>
+  <view class='second'>
+    <view style='width:5%;' />
+    <text class='icon'></text>
+    <text>目标{{home_menu_data.persion_0003}}</text>
+  </view>
+  <view class='three'>
+    <view class='three-one' bindtap='listenerButtonPreviewImage'>
+      <image src='{{task.listing.mainImageUrl}}' style='height:250rpx;width:250rpx;' class='three-one-img1' bindtap=''>
+        <!-- <image src='../../icon/icon_fangdatupian.png' style='height:50rpx;width:50rpx;' class='three-one-img2' /> -->
+      </image>
+    </view>
+    <view class='three-two'>
+      <view class='three-two-row1'>
+        <text class='three-two-row1-text'>{{task.listing.title}}</text>
+      </view>
+      <view class='three-two-row2'>
+        搜索展示价格：
+        <text style='color:#f59147'>{{task.listing.showPrice}}元</text>
+      </view>
+      <view class='three-two-row2'>排序位置：约{{task.listing.payerNum}}人付款</view>
+      <view class='three-two-row3'>
+        <image style='height:40rpx;width:40rpx;' src='../../icon/icon_dizhi.png'></image>
+        <view style='width:10rpx;'></view>
+        <text>{{task.listing.deliveryArea}}</text>
+      </view>
+    </view>
+  </view>
+  <view style='height:20rpx;'></view>
+  <view class='four'>
+    <view class='four-row1'>
+      <view class='four-row1-row1'>
+        <image style='height:50rpx;width:50rpx;' src='../../icon/icon_guanjianci.png'></image>
+      </view>
+      <view class='four-row1-row2'>
+        搜索关键字
+      </view>
+      <view class='four-row1-row3'>
+        <view style='width:20rpx;'></view>
+        <view>{{task.task.keyword}}</view>  
+      </view>
+    </view>
+    <view class='four-row2'>
+      <view style='width:20rpx;'></view>
+      <view class='four-row2-text' bindtap='setClipboardData' data-value='{{task.task.keyword}}'>点击复制关键字</view>
+    </view>
+  </view>
+  <view class='five'>
+    <view class='five-row1'>
+      <view class='five-row1-row1'>
+        <image src='../../icon/unit_price.png' style='height:50rpx;width:50rpx;'></image>
+      </view>
+      <view class='five-row1-row2'>
+        <text>拍下单价</text>
+      </view>
+      <view class='five-row1-row3'>
+        <view style='width:20rpx;'></view>
+        元
+        <text class='f59d47'>{{task.listing.price}}</text>
+      </view>
+    </view>
+    <view class='five-row1'>
+      <view class='five-row1-row1'>
+        <image src='../../icon/icon_xiadanshuliang.png' style='height:50rpx;width:50rpx;'></image>
+      </view>
+      <view class='five-row1-row2'>
+        <text>购买数量</text>
+      </view>
+      <view class='five-row1-row3'>
+        <view style='width:20rpx;'></view>
+        件
+        <text class='black'>{{task.task.buyCount}}</text>
+      </view>
+    </view>
+    <view class='five-row1'>
+      <view class='five-row1-row1'>
+        <image src='../../icon/icon_chengjiaojiage.png' style='height:50rpx;width:50rpx;'></image>
+      </view>
+      <view class='five-row1-row2'>
+        <text>应付总额</text>
+      </view>
+      <view class='five-row1-row3'>
+        <view style='width:20rpx;'></view>
+        元
+        <text class='f59d47'>{{task.listing.price*task.task.buyCount}}</text>
+      </view>
+    </view>
+    <view class='five-row1'>
+      <view class='five-row1-row1'>
+        <image src='../../icon/icon_jiangliyongjin.png' style='height:50rpx;width:50rpx;'></image>
+      </view>
+      <view class='five-row1-row2'>
+        <text>奖励{{home_menu_data.home_0001}}</text>
+      </view>
+      <view class='five-row1-row3'>
+        <view style='width:20rpx;'></view>
+        元
+        <text class='f59d47'>{{task.executePrice}}</text>
+      </view>
+    </view>
+    <view class='five-row2'>
+      <view class='five-row2-row1'>
+        <text class='text-btn'>!</text>
+      </view>
+      <view class='five-row2-row2'>
+        <text>商家要求</text>
+      </view>
+      <view class='five-row2-row3'>
+        <view style='width:20rpx;'></view>
+        <text style='color:#333333'>{{task.notes}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='second'>
+    <view style='width:5%;' />
+    <text class='icon'></text>
+    <text>核验{{home_menu_data.persion_0003}}</text>
+  </view>
+  
+  <view class="{{taskAuditMode}}" style="background: #fff;padding: 30rpx 0 20rpx;height:70rpx;">
+    <view class='six-row1'>
+      <view class='six-row1-row1'>
+        <text class='text-btn'>1</text>
+      </view>
+      <view class='six-row1-row2'>
+        <text>商家店铺名：</text>
+      </view>
+      <view class='six-row1-row3'>
+        <text>{{task.task.webStoreName}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="six six2">
+    <view class='six-row2'>
+      <view class='six-row2-row1'>
+        <text class='text-btn'>2</text>
+      </view>
+      <view class='six-row2-row2'>
+        <input class='text-input' maxlength='1000' placeholder-style='color:#888888' placeholder='请粘贴分享淘口令或商品链接核验' bindinput='setLinkAddress' value='{{linkAddress}}'></input>
+        <view class='delView'>
+          <icon type='clear' size='20' bindtap='delLinkAddress' wx:if='{{linkAddress != null && linkAddress.length > 0}}'></icon>
+          <!-- <text class='delText' bindtap='delLinkAddress' wx:if='{{linkAddress != null && linkAddress.length > 0}}'>x</text> -->
+        </view>
+      </view>
+      <view class='six-row2-row3' bindtap='checkOrder'>
+        <text class='text-btn2'>核对</text>
+      </view>
+    </view>
+
+    <view class='six-row3' wx:if='{{taskAuditMode==2}}'>
+      <view class='six-row3-row1'>
+        <text class='text-btn'>3</text>
+      </view>
+      <text class="title1">付款金额：</text>
+      <view class='six-row3-row2 sixRow21'>
+        <input class='text-input3' maxlength='40' placeholder-style='color:#888888' placeholder='填写实付金额' bindinput='setUserMount' value='{{userMount}}'></input>
+        <view class='delView1'>
+          <icon type='clear' size='18' bindtap='delUserMount' wx:if='{{userMount != null && userMount.length > 0}}'></icon>
+        </view>
+      </view>
+      <!--<view class='six-row3-row3' bindtap='checkOrder'>-->
+        <!--<text >与垫付金额差额须小于50</text>-->
+      <!--</view>-->
+  </view>
+</view>
+  <view class='second'>
+    <view style='width:5%;' />
+    <text class='icon'></text>
+    <text>提交订单</text>
+  </view>
+  <view class='seven'>
+    <view style='height:20rpx;'></view>
+    <view class='seven-row'>
+      <text>请确定是用绑定的"</text>
+      <text style='color:#f54747'>{{user.taobao}}</text>
+      <text>"账号下单</text>
+    </view>
+    <!-- <view class='seven-row2' wx:if='{{!task.storeBind}}'>
+      <view style='width:27%;'>付款金额:</view>
+      <view style='width:3%;'></view>
+      <input class='text-input2' placeholder-style='color:#888888' placeholder='填写实际付款金额' bindinput='setusedAmount' type='digit'></input>
+    </view> -->
+  </view>
+</view>
+<view class='end'>
+  <view style='height:32rpx;'></view>
+  <view class='end-row1'>
+    <text class='text-btn3'>!</text>
+    <view style='width:24rpx;'></view>
+    <view>注意事项</view>
+  </view>
+  <view style='height:24rpx;'></view>
+  <view class='end-row2'>
+    <!-- <text class='text-btn4'>1</text> -->
+    <checkbox-group bindchange='checkboxChange2'>
+      <checkbox value="true" />
+    </checkbox-group>
+    <view style='width:24rpx;'></view>
+    <view class='end-row2-text'>已确认使用账号"<text style='color:#f54747'>{{user.taobao}}</text>"下单</view>
+  </view>
+  <view style='height:24rpx;'></view>
+  <view class='end-row2'>
+    <!-- <text class='text-btn4'>2</text> -->
+    <checkbox-group bindchange='checkboxChange3'>
+      <checkbox value="true" />
+    </checkbox-group>
+    <view style='width:24rpx;'></view>
+    <view class='end-row2-text'>已确认未使用花呗/信用卡/淘客方式付款</view>
+  </view>
+  <view style='height:24rpx;'></view>
+  <view class='end-row2'>
+    <!-- <text class='text-btn4'>3</text> -->
+    <checkbox-group bindchange='checkboxChange4'>
+      <checkbox value="true" />
+    </checkbox-group>
+    <view style='width:24rpx;'></view>
+    <view class='end-row2-text'>已确认下单金额以及下单要求符合{{home_menu_data.persion_0003}}要求</view>
+  </view>
+  <view style='height:24rpx;'></view>
+  <view class='end-row2'>
+    <checkbox-group bindchange='checkboxChange'>
+      <checkbox value="true" />
+    </checkbox-group>
+    <view style='width:24rpx;'></view>
+    <view class='end-row2-text2'>我会在1小时内付款并提交{{home_menu_data.persion_0003}},防止{{home_menu_data.persion_0003}}被释放</view>
+  </view>
+</view>
+<view style='height:20rpx;background-color: #fdf3f3;'></view>
+<view style='height:15px;background-color: #fdf3f3;'></view>
+<!-- <view view class='end2'>
+  <view class='end-row2'>
+    <checkbox-group bindchange='checkboxChange'>
+      <checkbox value="true" />
+    </checkbox-group>
+    <view style='width:24rpx;'></view>
+    <view class='end-row2-text2'>我会在1小时内付款并提,防止被释放</view>
+  </view>
+  <view style='height:60rpx;'></view>
+</view> -->
+<view style='height:120rpx;'></view>
+<view class='bottom-view'>
+  <button class='bottom-view-btn' disabled='{{disable || (taskAuditMode == 2 && !userMount)}}' bindtap='sumbitTask'>提交{{home_menu_data.persion_0003}}</button>
+</view>
+<!--弹窗-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">提示</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <text class='modal-input-text'>确定放弃这次{{home_menu_data.persion_0003}}吗？</text>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">是</view>
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">否</view>
+  </view>
+</view>
+<loading hidden="{{loading?'hidden':''}}">
+  核对中...
+</loading>
+</view>

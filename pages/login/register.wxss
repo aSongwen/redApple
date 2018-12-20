@@ -1,0 +1,143 @@
+@import '../template/template.wxss';
+
+.userinfo-avatar {
+  width: 208rpx;
+  height: 208rpx;
+  margin-top: 50rpx;
+  border-radius: 50%;
+  border:2rpx #ff9a9a solid;
+}
+
+.userinfo-nickname {
+  color: #999999;
+  font-size: 30rpx;
+  padding-bottom: 30rpx;
+  padding-top: 10rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.userinfo-text {
+  padding-bottom: 50rpx;
+  width: 100%;
+  text-align: center;
+  color: #333333;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo2 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userinfo-input {
+  border: 2rpx solid #cdcdcd;
+  border-radius: 10rpx;
+  height: 100rpx;
+  width: 560rpx;
+  display: flex;
+  line-height: 100rpx;
+}
+
+.userinfo-input-text {
+  border-right: 2rpx solid #cdcdcd;
+  width: 100rpx;
+  text-align: center;
+  color: #333333;
+}
+
+.userinfo-input-input {
+  height: 100rpx;
+  padding-left: 30rpx;
+  font-size: 30rpx;
+}
+
+.userinfo-input-btn {
+  background-color: #f54747;
+  color: white;
+  width: 60%;
+  font-size: 30rpx;
+  line-height: 100rpx;
+  border-top-left-radius: 0rpx;
+  border-bottom-left-radius: 0rpx;
+}
+
+.userinfo-input-btnshow {
+  background-color: #f54747;
+  color: white;
+  width: 40%;
+  font-size: 30rpx;
+  line-height: 100rpx;
+  border-top-left-radius: 0rpx;
+  border-bottom-left-radius: 0rpx;
+  display: block;
+}
+
+.userinfo-input-btnhide {
+  background-color: #f54747;
+  color: white;
+  width: 40%;
+  font-size: 20rpx;
+  line-height: 100rpx;
+  border-top-left-radius: 0rpx;
+  border-bottom-left-radius: 0rpx;
+  display: none;
+}
+
+.submit-btn {
+  background-color: #f54747;
+  color: white;
+  width: 560rpx;
+  height: 90rpx;
+  font-size: 40rpx;
+  line-height: 90rpx;
+}
+
+.userinfo-btn {
+  background-color: #f54747;
+  color: white;
+}
+
+.headers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 120rpx;
+}
+
+.headers-box {
+  width: 90%;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bottom{
+  width: 560rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  color: #47a5f5;
+  font-size: 30rpx;
+}
+.bottom-row1{
+  display: flex;
+  width: 50%;
+  height: 100%;
+  align-items: center;
+}
+.bottom-row2{
+  display: flex;
+  flex-direction: row-reverse;
+  width: 50%;
+  height: 100%;
+  align-items: center;
+}

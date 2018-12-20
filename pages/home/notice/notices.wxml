@@ -1,0 +1,12 @@
+<view class='header' style='height:{{height}}px'>
+  <view style='height:60rpx;'></view>
+  <view class='images'>
+    <image src='../icon/img_xianzhifangwen.png' mode='widthFix' style='width:124rpx;'></image>
+  </view>
+  <view style='height:100rpx;'></view>
+  <view class='text1'>提示</view>
+  <view style='height:74rpx;'></view>
+  <view class='text2'>请和您的推荐人确认您所属的平台登入</view>
+  <!-- <view style='height:30rpx;'></view>
+  <view class='text2'>具体情况请联系管理员处理</view> -->
+</view>

@@ -1,0 +1,79 @@
+<!--pages/home/personal/personal.wxml-->
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100vh;background-size:100%;overflow: hidden">
+    <view class='show-view'>
+        <view class='show-view-column1'>
+            <image class="userinfo-avatar" src="{{userinfo!=null&&userinfo.avatarUrl!=''?userinfo.avatarUrl:wx_headImage!=null&&wx_headImage!=''?wx_headImage:'./icon/img_touxiang.png'}}" background-size="cover"></image>
+            <text class="userinfo-text">{{user.mobile}}</text>
+            <text class="userinfo-text" wx:if='{{user!=null}}'>ID:{{user.code}}</text>
+            <!-- <navigator class="userinfo-text2" wx:if='{{user==null}}' url='/pages/login/login'>前去登录</navigator> -->
+        </view>
+        <view class='show-view-column2'>
+            <view class='show-view-column2-row'>
+                <text class='show-view-column2-row-text1'>下单{{home_menu_data.persion_0003}}总数</text>
+                <!-- <text class='show-view-column2-row-text2'>{{successRate!=null?successRate:0}}</text> -->
+                <text class='show-view-column2-row-text2'>{{user.successTaskCount!=null?user.successTaskCount:0}}</text>
+                
+            </view>
+            <view class='show-view-column2-row'>
+                <text class='show-view-column2-row-text1'>浏览{{home_menu_data.persion_0003}}总数</text>
+                <text class='show-view-column2-row-text2'>{{user.successFlowTakCount!=null?user.successFlowTakCount:0}}</text>
+            </view>
+        </view>
+        <view class='show-view-column3' style='height:{{user.identity == 1 && user.bindStatus == 2?480:260}}rpx'>
+            <view wx:for='{{user.identity == 1 && user.bindStatus == 2?title:title2}}' wx:key='1' class="show-view-column3-block">
+                <view style='width:5%;'></view>
+                <view class="{{item.is_now?'show-view-column3-row':'show-view-column3-row2'}}" bindtap='navigatorTo' data-url='{{item.url}}' wx:if="{{item.text !='帮助与客服'}}" >
+                    <view class='show-view-column3-rowleft'>
+                        <image src='{{item.src}}' style='height:50rpx;width:50rpx;'></image>
+                    </view>
+                    <view class='show-view-column3-rowcenter'>
+                        <text style='color:#333333;'>{{item.text}}</text>
+                    </view>
+                    <view class='show-view-column3-rowright1'>
+                        <text wx:if='{{item.flag}}' class='show-view-column3-rowright1-text'>{{count}}</text>
+                    </view>
+                    <view class='show-view-column3-rowright2'>
+                        <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;'></image>
+                    </view>
+                </view>
+                <view open-type="contact" class="{{item.is_now?'show-view-column3-row':'show-view-column3-row2'}}"  wx:else >
+                    <view class='show-view-column3-rowleft'>
+                        <image src='{{item.src}}' style='height:50rpx;width:50rpx;margin-right:25rpx;'></image>
+                    </view>
+                    <view class="chat">
+                        <button  open-type="contact" session-from="weapp">
+                            <view class='show-view-column3-rowcenter'>
+                                <text style='color:#333333;align-items: center;'>{{item.text}}</text>
+                            </view>
+                            <image src="/pages/home/personal/icon/cente_icon_xinxibangding.png" mode="widthFix"></image>
+
+                        </button>
+
+                    </view>
+                </view>
+
+
+                <!--
+                  <button class="open-button" open-type="contact" style='margin-left:-2px;' wx:else >
+                  <view class='show-view-column3-rowleft'>
+                    <image src='{{item.src}}' style='height:50rpx;width:50rpx;'></image>
+                  </view>
+                  <view class='show-view-column3-rowcenter'>
+                    <text style='color:#333333;'>{{item.text}}</text>
+                  </view>
+                  <view class='show-view-column3-rowright1'>
+                    <text wx:if='{{item.flag}}' class='show-view-column3-rowright1-text'>{{count}}</text>
+                  </view>
+                  <view class='show-view-column3-rowright2'>
+                    <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;margin-right:-5px;'></image>
+                  </view>
+                </button>-->
+
+
+
+
+            </view>
+        </view>
+    </view>
+</view>
+

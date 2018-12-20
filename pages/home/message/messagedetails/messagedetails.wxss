@@ -1,0 +1,69 @@
+.heard{
+  width: 100%;
+  background-color: #ffffff;
+}
+.msg-box{
+  width: 100%;
+  height: 400rpx;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+}
+.msg-box-show{
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.msg-box-view1{
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+}
+.msg-box-view2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+.msg-box-view3{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+  border-top: 1px solid #cdcdcd;
+}
+.msg-box-view1-view1{
+  display: flex;
+  height: 100%;
+  width: 95%;
+  font-size: 36rpx;
+  color: #333333;
+  font-weight: bold;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.msg-box-view2-text{
+  font-size: 32rpx;
+  color: #999999;
+  height: 70rpx;
+  width: 90%;
+}
+.msg-box-view2-replace{
+  font-size: 32rpx;
+  color: #999999;
+  height: auto;
+  width: 90%;
+}
+.msg-box-view3-text{
+  font-size: 30rpx;
+  width: 50%;
+  display: flex;
+  height: 100%;
+  align-items: center;
+}

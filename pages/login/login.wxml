@@ -1,0 +1,54 @@
+<view class='userinfo'>
+  <view class='userinfo-step'>
+  </view>
+  <image class="userinfo-avatar" src="./icon/img_touxiang.png" background-size="cover"></image>
+  <view style='height:30rpx;' />
+  <view class='userinfo-input'>
+    <text class='userinfo-input-text'>+86</text>
+    <input class='userinfo-input-input' type='number' placeholder='请输入手机号码' maxlength='11' name='phone' bindinput='setPhone'></input>
+  </view>
+  <view style='height:30rpx;' />
+  <view class='userinfo-input'>
+    <input class='userinfo-input-input2' type='number' placeholder='请输入验证码' maxlength='6' name='code' bindinput='setMobileCode'></input>
+    <button type="button" class="{{is_show?'userinfo-input-btnshow':'userinfo-input-btnhide'}}" bindtap="clickVerify" disabled='{{checkCode}}'>获取验证码</button>
+    <button type="button" class="{{is_show?'userinfo-input-btnhide':'userinfo-input-btnshow'}}" disabled='{{checkCode}}'>{{last_time}}s</button>
+  </view>
+  <view style='height:100rpx;' />
+  <!-- <button class='submit-btn' bindtap='submitNext' disabled='{{disabled}}'>登录</button> -->
+   <button class='submit-btn' open-type='getUserInfo' bindgetuserinfo="getFirstUserInfo"  disabled='{{disabled}}'>登录</button>
+
+   <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{modalAuthShow}}"></view>
+  <view class="modal-dialog" wx:if="{{modalAuthShow}}">
+  <view class="dialogImg">
+    <image src="./icon/photo.png"></image>
+  </view>
+  <view class="modal-content">
+   为了能更好的为您提供安全服务，请开启位置和信息授权！
+  </view>
+  <view class="modal-footer">
+    <button class="btn-cancel" bindtap="modalBindcancel" data-status="cancel">再想想</button>
+    <button class="btn-confirm" open-type="openSetting" bindopensetting="callback" >立即授权</button>
+  </view>
+    <view class="dialogClose">
+      <image src="./icon/icon_qx.png" bindtap="modalBindcancel" ></image>
+    </view>
+</view>
+
+  
+
+
+  <view style='height:5rpx;'></view>
+  <view class='bottom'>
+    <navigator class='bottom-row1' open-type='redirect' url='./register2'>邀请注册</navigator>
+    <view class='bottom-row2'></view>
+  </view>
+</view>
+<loading hidden="{{!disabled?'hidden':''}}">
+  登录中...
+</loading>
+<loading hidden="{{!checkCode?'hidden':''}}">
+  发送验证码中...
+</loading>
+<loading hidden="{{!checkMobile?'hidden':''}}">
+  判断手机号码是否可用...
+</loading>

@@ -1,0 +1,26 @@
+<view class="search">
+  <view class="search-result">
+    <scroll-view class='result-item' scroll-y="true" bindscrolltolower="searchScrollLower">
+      <view class="result-item2" wx:for="{{notics}}" wx:key="unique" data-data="{{index}}" bindtap='navTo'>
+        <view style='width:5%;'></view>
+        <view class="{{index+1 == size?'notice-show-row2':'notice-show-row'}}">
+          <view class='notice-show-row-flex'>
+            <image src='./icon/icon_xiaoxi.png' style='height:80rpx;width:80rpx;'></image>
+          </view>
+          <view class='notice-show-column'>
+            <view style='height:40rpx;'></view>
+            <view class='notice-show-column-row'>
+              <text class='notice-show-column-row-text1'>{{item.title}}</text>
+              <view style='width:50rpx;'></view>
+              <text class='notice-show-column-row-text2' wx:if='{{index==0}}'>new</text>
+            </view>
+            <view style='height:10rpx;'></view>
+            <text class='notice-show-column-text2'>{{item.gmtTime}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="loading" hidden="{{!searchLoading}}">正在载入更多...</view>
+      <view class="loading complete" hidden="{{!searchLoadingComplete}}"></view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+<!--pages/home/outurl/recomment.wxml-->
+<view class="head">
+  <view class="head-context">
+    <web-view src="https://mp.weixin.qq.com/"></web-view>
+  </view>
+</view>

@@ -1,0 +1,120 @@
+<!--pages/home/personal/msgbinding.wxml-->
+<view style='height:{{height}}px;width:{{width}}px' class='show-view'>
+  <navigator class='show-view-column1' style='height:{{height*0.075}}px' url='../../edit/phone?phone={{user.phone}}'>
+    <view class='show-view-row1'>
+      <view style='width:30rpx;' />
+      <text class='show-view-row1-text'>手机号</text>
+    </view>
+    <view class='show-view-row2'>
+      <text class='show-view-row2-text' wx:if="{{user.mobile!=null}}">{{user.mobile}}</text>
+      <text class='show-view-row2-text2' wx:else>还未绑定</text>
+    </view>
+    <view class='show-view-row3'>
+      <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;'></image>
+    </view>
+  </navigator>
+  <view class='show-view-column1' style='height:{{height*0.075}}px' wx:if="{{user.identity == 1 || user.bindStatus==2}}">
+    <view class='show-view-row1'>
+      <view style='width:30rpx;' />
+      <text class='show-view-row1-text'>旺旺号</text>
+    </view>
+    <view class='show-view-row2'>
+      <text class='show-view-row2-text'>{{user.taobao==null?'':user.taobao}}</text>
+    </view>
+  </view>
+  <navigator class='show-view-column1' style='height:{{height*0.075}}px' url="../../login/taobao/taobao" wx:if="{{user.identity == 2 && user.bindStatus==0}}">
+    <view class='show-view-row1'>
+      <view style='width:30rpx;' />
+      <text class='show-view-row1-text'>旺旺号</text>
+    </view>
+    <view class='show-view-row2'>
+      <text class='show-view-row2-text2'>还未绑定</text>
+    </view>
+    <view class='show-view-row3'>
+      <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;'></image>
+    </view>
+  </navigator>
+  <navigator class='show-view-column1' style='height:{{height*0.075}}px' url="../../login/taobao/taobao" wx:if="{{user.identity == 2 && user.bindStatus==3}}">
+    <view class='show-view-row1'>
+      <view style='width:30rpx;' />
+      <text class='show-view-row1-text'>旺旺号</text>
+    </view>
+    <view class='show-view-row2'>
+      <text class='show-view-row2-text2'>审核失败</text>
+    </view>
+    <view class='show-view-row3'>
+      <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;'></image>
+    </view>
+  </navigator>
+  <navigator class='show-view-column1' style='height:{{height*0.075}}px' url="../../login/taobao/Auditing/Auditing?time={{user.bindTime}}" wx:if="{{user.identity == 2 && user.bindStatus==1}}">
+    <view class='show-view-row1'>
+      <view style='width:30rpx;' />
+      <text class='show-view-row1-text'>旺旺号</text>
+    </view>
+    <view class='show-view-row2'>
+      <text class='show-view-row2-text2'>待审核</text>
+    </view>
+    <view class='show-view-row3'>
+      <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;'></image>
+    </view>
+  </navigator>
+   <navigator class='show-view-column1' style='height:{{height*0.075}}px' wx:if='{{user.idCardNumber!=null}}'>
+    <view class='show-view-row1'>
+      <view style='width:30rpx;' />
+      <text class='show-view-row1-text'>身份认证</text>
+    </view>
+    <view class='show-view-row2'>
+      <text class='show-view-row2-text'>{{realName}}</text>
+    </view>
+  </navigator>
+  <navigator class='show-view-column1' style='height:{{height*0.075}}px' url='../../edit/idCard' wx:else>
+    <view class='show-view-row1'>
+      <view style='width:30rpx;' />
+      <text class='show-view-row1-text'>身份认证</text>
+    </view>
+    <view class='show-view-row2'>
+      <text class='show-view-row2-text2'>还未绑定</text>
+    </view>
+    <view class='show-view-row3'>
+      <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;'></image>
+    </view>
+  </navigator>
+  <navigator class='show-view-column1' style='height:{{height*0.075}}px' url='../../edit/bindbankcard'>
+      <view class='show-view-row1'>
+        <view style='width:30rpx;' />
+          <text class='show-view-row1-text'>银行卡</text>
+        </view>
+      <view class='show-view-row2' style='width:70%'>
+        <text class='show-view-row2-text'>{{user.bankCardNumber==null||user.bankCardNumber==""?'还未绑定':bankName}}</text>
+      </view>
+      <view class='show-view-row3'>
+      <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;'></image>
+    </view> 
+  </navigator> 
+  <navigator class='show-view-column1' style='height:{{height*0.075}}px' url='../../edit/qq'>
+    <view class='show-view-row1'>
+      <view style='width:30rpx;' />
+      <text class='show-view-row1-text'>QQ</text>
+    </view>
+    <view class='show-view-row2'>
+      <text class='show-view-row2-text' wx:if="{{user.qq!=null}}">{{user.qq}}</text>
+      <text class='show-view-row2-text2' wx:else>还未绑定</text>
+    </view>
+    <view class='show-view-row3'>
+      <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;'></image>
+    </view>
+  </navigator>
+  <navigator class='show-view-column2' style='height:{{height*0.075}}px' url='../../edit/wechat'>
+    <view class='show-view-row1'>
+      <view style='width:30rpx;' />
+      <text class='show-view-row1-text'>微信</text>
+    </view>
+    <view class='show-view-row2'>
+      <text class='show-view-row2-text' wx:if="{{user.wechat!=null}}">{{user.wechat}}</text>
+      <text class='show-view-row2-text2' wx:else>还未绑定</text>
+    </view>
+    <view class='show-view-row3'>
+      <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;'></image>
+    </view>
+  </navigator>
+</view>

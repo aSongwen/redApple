@@ -1,0 +1,71 @@
+/* pages/home/personal/msgbinding.wxss */
+
+page {
+  background-color: #f0f0f0;
+}
+
+.show-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.show-view-column1 {
+  display: flex;
+  align-items: center;
+  height: 25%;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 0.5rpx solid #cdcdcd;
+}
+
+.show-view-column2 {
+  display: flex;
+  align-items: center;
+  height: 25%;
+  width: 100%;
+  background-color: #fff;
+}
+
+.show-view-row1 {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.show-view-row2 {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: 40%;
+}
+
+.show-view-row3 {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  height: 100%;
+}
+
+.show-view-row1-text {
+  color: #999;
+  font-size: 36rpx;
+}
+
+.show-view-row2-text {
+  color: #333;
+  font-size: 36rpx;
+}
+
+.show-view-row2-text2 {
+  color: #47adf5;
+  font-size: 36rpx;
+}
+
+.show-view-row2-text3 {
+  color: #f54747;
+  font-size: 36rpx;
+}

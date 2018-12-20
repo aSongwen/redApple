@@ -1,0 +1,48 @@
+<!--pages/commission/cashwait.wxml-->
+<view style="float: left;background: #f0f0f0; width:100%; height: 100%;">
+  <view class='top'>
+    <view class='one'>
+      <image class='icon2' src='./icon/msg_icon_daozhang_sel.png' wx:if='{{role == 0}}'></image>
+      <image class='icon' src='./icon/msg_icon_faqitixian_sel.png' wx:else></image>
+      <text class='apply'>发起{{home_menu_data.home_0006}}申请</text>
+    </view>
+    <view class='two'></view>
+    <view class='three'>
+      <image class='icon2' src='./icon/msg_icon_daozhang_sel.png' wx:if='{{role == 0}}'></image>
+      <image class='icon1' src='./icon/msg_icon_chulizhong_sel.png' wx:else></image>
+      <text class='system' style="{{type == 1?'color:#f54747':''}}">系统处理中</text>
+    </view>
+    <view class='two' wx:if='{{type == 1}}'></view>
+    <view class='four' wx:if='{{type == 2}}'></view>
+    <view class='five' wx:if='{{type == 2}}'></view>
+    <view class='five1' wx:if='{{type == 2}}'>
+      <text class='predict'>预计</text>
+      <text class='date'>{{date}}</text>
+      <!-- <text class='time'>08:50</text> -->
+      <text class='money'>钱到账</text>
+    </view>
+    <view class='six'>
+      <image class='icon2' src='./icon/msg_icon_daozhang_sel.png' wx:if='{{type == 1}}'></image>
+      <image class='icon2' src='./icon/msg_icon_daozhang_def.png' wx:if='{{type == 2}}'></image>
+      <text class='income' style="{{type == 1?'color:#f54747':''}}">到账成功</text>
+    </view>
+  </view>
+  <view class='down'>
+    <view class='first'>
+      <text class='left'>{{home_menu_data.home_0006}}金额</text>
+      <text class='right'>¥{{amount}}</text>
+    </view>
+    <view class='second'>
+      <text class='left'>手续费</text>
+      <text class='right'>¥{{feemoney}}</text>
+    </view>
+    <view class='third'>
+      <text class='left'>到账方式</text>
+      <text class='right' wx:if='{{type==1}}'>微信钱包</text>
+       <text class='right' wx:if='{{type==2}}'>{{user.bankName}}({{bankCardNumber}})</text> 
+    </view>
+    <view class='confirm'>
+      <navigator class='swiper-view2-navigator' open-type="switchTab" url='/pages/home/home'>确定</navigator>
+    </view>
+  </view> 
+</view>

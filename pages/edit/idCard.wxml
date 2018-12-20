@@ -1,0 +1,129 @@
+<view style="overflow-x: hidden">
+    <view style='height:50rpx;background:#fff;'></view>
+
+    <view class="uploadCard" wx:if="{{user.idCardImageFront == null || user.idCardImageBack == null}}">
+        <view class='two'>
+            <view class='two-input'>
+                <image wx:if="{{frontId == null && user.idCardImageFront == null}}" src="icon/add.png" bindtap="setFrontImage" class="add-icon"></image>
+                <image wx:else src='{{user.idCardImageFront == null?frontId:user.idCardImageFront}}' class="add-img"></image>
+            </view>
+            <view class="shadow" hidden="{{frontId == null && user.idCardImageFront == null}}" bindtap="{{(frontId != null || user.idCardImageFront != null)?'showImage':''}}" data-path='{{user.idCardImageFront == null?frontId:user.idCardImageFront}}'>
+                <view class="shadow-text">仅用于平台认证</view>
+            </view>
+            <view style='height:40rpx;'></view>
+            <view style="font-weight:blod;color:#767676;">身份证的头像面</view>
+        </view>
+        <view class='two'>
+            <view class='two-input'>
+                <image wx:if="{{backId == null && user.idCardImageBack == null}}" class="add-icon" src="icon/add.png" bindtap="setBackImage"></image>
+                <image wx:else src='{{user.idCardImageBack == null?backId:user.idCardImageBack}}' class="add-img"></image>
+            </view>
+            <view class="shadow" hidden="{{backId == null && user.idCardImageBack == null}}" bindtap="{{(backId != null || user.idCardImageBack != null) ?'showImage':''}}" data-path='{{user.idCardImageBack == null?backId:user.idCardImageBack}}'>
+                <view class="shadow-text">仅用于平台认证</view>
+            </view>
+            <view style='height:40rpx;'></view>
+            <view style="font-weight:blod;color:#767676;">身份证的国徽面</view>
+        </view>
+    </view>
+
+    <view>
+        <view class='one'>
+            <view class='one-text' wx:if='{{user.realName != null}}'>
+                <view class='one-row1'>姓名：</view>
+                <view class='one-row2'>{{user.realName}}</view>
+            </view>
+            <view class='one-text'  wx:else>
+                <view class='one-row1'>姓名：</view>
+                <input class='one-input' placeholder='{{frontStatus == 2 ? "正在解析中..." : "拍照身份证照片系统自动识别"}}' value="{{realName}}" disabled='disabled' maxlength='18'></input>
+            </view>
+        </view>
+        <view class='one' wx:if='{{user.idCardNumber != null}}'>
+            <view class='one-text'>
+                <view class='one-row1'>性别：</view>
+                <view class='one-row2'>{{user.gender == 0 ? '女' : user.gender == 1 ? '男' : ''}}</view>
+            </view>
+            <!--<input class='one-input' placeholder='{{frontStatus == 2 ? "性别:正在解析中..." : "性别:上传身份证照片后自动显示"}}' value="{{gender == 0?'女' : gender == 1 ? '男' : ''}}" disabled='disabled' maxlength='18' wx:else></input>-->
+        </view>
+        <view class='one'>
+            <view class='one-text' wx:if='{{user.idCardNumber != null}}'>
+                <view class='one-row1'>身份证号：</view>
+                <view class='one-row2'>{{user.idCardNumber}}</view>
+            </view>
+            <view class='one-text'  wx:else>
+                <view class='one-row1'>身份证号：</view>
+                <input class='one-input' placeholder='{{frontStatus == 2 ? "正在解析中..." : "拍照身份证照片系统自动识别"}}' value="{{idCardNumber}}" disabled='disabled' maxlength='18'></input>
+            </view>
+        </view>
+        <view class='one' wx:if='{{user.idCardNumber != null}}'>
+            <view class='one-text'>
+                <view class='one-row1'>有效期：</view>
+                <view class='one-row2'>{{startTime != null ? startTime : ''}} ~ {{endTime != null ? endTime : ''}}</view>
+            </view>
+            <!--<input class='one-input' placeholder='{{backStatus == 2 ? "有效期:正在解析中..." : "有效期:上传身份证照片后自动显示"}}' value="{{startTime && endTime ? startTime + '~' + endTime : ''}}" disabled='disabled' maxlength='30' wx:else></input>-->
+        </view>
+        <view class='three'>
+            <view style='width:5%;'></view>
+            <text style='width:20%;'>开户银行</text>
+            <view style='width:5%;'></view>
+            <view class='three-text'>
+                <!-- <input bindinput='setBankName' value="{{bankName_old}}"></input> -->
+                <text class='three-text1' wx:if="{{array[index]!=null&&array[index]!=''}}">{{array[index]}}</text>
+                <text class='three-text1' wx:if="{{bankName_old!=null&&bankName_old!=''}}">{{bankName_old}}</text>
+                <text class='three-text1' wx:else></text>
+                <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class='three-text2'>
+                    <text>请选择</text>
+                </picker>
+            </view>
+            <!-- <view style='width:2%;'></view>
+            <view style='width:5%;'>
+              <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;'></image>
+            </view> -->
+            <view style='width:3%;'></view>
+        </view>
+        <view class='four1'>
+            <view style='width:5%;'></view>
+            <text style='width:20%;'>卡号</text>
+            <view style='width:5%;'></view>
+            <!-- <input class='input' bindinput='setbankNumber' maxlength='19'></input> -->
+            <input class='input' bindinput='setbankNumber' cursor-spacing='120' value='{{bankCardNum}}'></input>
+        </view>
+        <!--<view class="tip">
+            提示：平台对身份信息都是MD5加密储存技术，只做实名认证用途，请您放心。
+        </view>-->
+        <view class="tip">
+            <view>温馨提示：</view>
+            <view>1.银行卡只可绑定身份证本人的银行卡</view>
+            <view>2.信息错误次数超过5次后，只能次日在添加</view>
+            <view>3.平台信息经过MD5加密储存，信息仅用于身份验证</view>
+        </view>
+        <view style="height:30rpx;"></view>
+        <!-- <view class='one'>
+           <view class='one-text' wx:if='{{user.idCardNumber != null}}'>
+            <view class='one-row1'>失效期</view>
+            <view class='one-row2'>{{user.endDate}}</view>
+          </view>
+          <input class='one-input' placeholder='失效期:上传身份证照片后自动显示' value="{{endDate}}" disabled='disabled' maxlength='18' wx:else></input>
+        </view> -->
+    </view>
+    <!--
+    <view class='one'>
+       <view class='one-text' wx:if='{{user.gender != null}}'>
+        <view class='one-row1'>性别：</view>
+        <view class='one-row2'>{{user.gender == 0?'女' : gender == 1 ? '男' : ''}}</view>
+      </view>
+      <input class='one-input' placeholder='性别:上传身份证照片后自动显示' value="{{gender == 0?'女' : gender == 1 ? '男' : ''}}" disabled='disabled' maxlength='18' wx:else></input>
+    </view> -->
+
+
+    <view style='height:30rpx;'></view>
+
+    <view style='height:30rpx;'></view>
+    <view class='four' wx:if='{{user.idCardNumber == null}}'>
+        <view bindtap='saveIdCard' class='save'>
+            <text>保存</text>
+        </view>
+    </view>
+    <loading hidden="{{loading?'':'hidden'}}">
+        保存中...
+    </loading>
+</view>

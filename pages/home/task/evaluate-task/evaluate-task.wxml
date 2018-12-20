@@ -1,0 +1,120 @@
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100%;background-size:100%;">
+<view style='height:auto;width:{{width}}px;' class='show-view'>
+  <view class="headers" wx:if='{{status == 1}}'>
+    <view class='headerows-row1'>
+      <image src='../../icon/icon_daojishi.png' style='height:50rpx;width:50rpx;'></image>
+    </view>
+    <view class='headerows-row2'>
+      <view class='headerows-row2-column1'>
+        <text>{{home_menu_data.persion_0003}}倒计时:{{date}}</text>
+      </view>
+      <view class='headerows-row2-column2'>
+        <text>注意：只有一次修改机会</text>
+      </view>
+    </view>
+    <view class='headerows-row3'>
+      <!-- <view class='headerows-row3-btn' bindtap='showDialogBtn'>
+        <text>放弃</text>
+      </view> -->
+    </view>
+  </view>
+  <view style='height: 100rpx;' wx:if='{{status == 1}}'></view>
+  <view class='second'>
+    <view style='width:5%;' />
+    <text class='icon'></text>
+    <text>目标{{home_menu_data.persion_0003}}</text>
+  </view>
+  <view class='three-header'>
+    <view style='width:5%;'></view>
+    <text>订单号：{{task.task.orderNo}}</text>
+  </view>
+  <view class='three'>
+    <view class='three-one'>
+      <image src='{{task.listing.mainImageUrl}}' style='height:250rpx;width:250rpx;' class='three-one-img1' data-src='{{task.listing.mainImageUrl}}'>
+      </image>
+    </view>
+    <view class='three-two'>
+      <view class='three-two-row1'>
+        <text class='three-two-row1-text'>{{task.listing.title}}</text>
+      </view>
+      <view class='three-two-row2' wx:if="{{task.orderPayTime != null}}">
+        下单时间：{{task.orderPayTime}}
+      </view>
+      <view class='three-two-row2'>
+        付款金额：{{task.listing.price}}元
+      </view>
+    </view>
+  </view>
+  <view style='height:20rpx;'></view>
+  <view class='four'>
+    <view class='four-column1'>
+      <view style='width:5%;'></view>
+      <text wx:if='{{srcs.length != 0}}'>指定评价内容和图片</text>
+      <text wx:else>指定评价内容</text>
+    </view>
+    <view class='four-column2'>
+      <view style='width:5%;'></view>
+      <view class='four-column2-textarea'>
+        <view class="evaluation">{{comment}}</view>
+      </view>
+      <view style='width:5%;'></view>
+    </view>
+    <view style='height:10rpx;'></view>
+    <view class='four-column3' style='height:{{imgHeight}}rpx;'>
+      <view class='four-column3-head' wx:if='{{srcs != null}}'>
+        <view wx:for='{{srcs}}' wx:key="srcunique">
+          <image bindtap="listenerButtonPreviewImage1" data-src='{{item}}' src="{{item}}" style='width:{{width * 0.9*0.18}}px;padding-right:{{width * 0.9 * 0.025}}px;height: 59px;' wx:if='{{(index+1)%5 != 0}}' mode="aspectFit"></image>
+          <image bindtap="listenerButtonPreviewImage1" src="{{item}}" style='width:{{width * 0.9*0.18}}px;height: 59px;' wx:else></image>
+        </view>
+      </view>
+    </view>
+
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{modalAuthShow}}"></view>
+  <view class="modal-dialog" wx:if="{{modalAuthShow}}">
+  <view class="dialogImg">
+    <image src="./icon/photo.png"></image>
+  </view>
+  <view class="modal-content">
+   为了能保存图片到相册，请开启保存到相册授权！
+  </view>
+  <view class="modal-footer">
+    <button class="btn-cancel" bindtap="modalBindcancel" data-status="cancel">再想想</button>
+    <button class="btn-confirm" open-type="openSetting" bindopensetting="callback" >立即授权</button>
+  </view>
+    <view class="dialogClose">
+      <image src="./icon/icon_qx.png" bindtap="modalBindcancel" ></image>
+    </view>
+</view>
+
+    <view class='four-column4'>
+      <button class='four-column4-btn' bindtap='download' wx:if='{{srcs.length != 0}}'>一键复制评价内容，并把图片保存到相册</button>
+      <button class='four-column4-btn' bindtap='download' wx:else>一键复制评价内容</button>
+    </view>
+    <view class='second'>
+      <view style='width:5%;' />
+      <text class='icon'></text>
+      <text>提交评价截图</text>
+    </view>
+  </view>
+  <view class='five'>
+    <view wx:for="{{pics}}" wx:key="unique" wx:for-index="i">
+      <image src="{{item}}" class='add_img1' bindtap="listenerButtonPreviewImage2" mode='widthFix' data-src='{{item}}' style='margin-bottom:{{width*0.05}}px'>
+        <image src='./icon/icon_delete.png' class="delete-btn" mode='widthFix' data-id="{{i}}" catchtap="deleteImg" />
+      </image>
+    </view>
+    <image src='./icon/add.png' class='add_img' bindtap='gotoShow' style='margin-bottom:{{width*0.05}}px'></image>
+    <view class="tips">*请上传在淘宝的评价截图</view>
+  </view>
+  <view style='height:50rpx;'></view>
+</view>
+<view style='height:120rpx;'></view>
+<view class='bottom-view'>
+  <button class='bottom-view-btn' bindtap='saveTask' disabled='{{disable}}'>提交{{home_menu_data.persion_0003}}</button>
+</view>
+<loading hidden='{{saveImage}}'>保存图片中</loading>
+<loading hidden='{{saveTask}}'>提交{{home_menu_data.persion_0003}}中</loading>
+</view>
+<!-- <view class="prevImage">
+  <view id="mask"></view>
+  <image class="maskImage" src='./icon/icon_delete.png'></image>
+</view> -->

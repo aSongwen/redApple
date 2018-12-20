@@ -1,0 +1,55 @@
+var filters = {
+  toFix: function (value) {
+    return value.toFixed(2)//此处2为保留两位小数
+  }
+}
+var numFr = {
+  getNum: function (x) {
+    var f = parseFloat(x);
+    if (isNaN(f)) {
+      return false;
+    }
+    var f = Math.round(x * 100) / 100;
+    var s = f.toString();
+    var rs = s.indexOf('.');
+    if (rs < 0) {
+      rs = s.length;
+      s += '.';
+    }
+    while (s.length <= rs + 2) {
+      s += '0';
+    }
+    if(s>0){
+      s="+"+s;
+    }
+    return s;
+  }
+}
+/**
+ * 大于0无加号
+ */
+var numFrNo = {
+  getNum: function (x) {
+    var f = parseFloat(x);
+    if (isNaN(f)) {
+      return false;
+    }
+    var f = Math.round(x * 100) / 100;
+    var s = f.toString();
+    var rs = s.indexOf('.');
+    if (rs < 0) {
+      rs = s.length;
+      s += '.';
+    }
+    while (s.length <= rs + 2) {
+      s += '0';
+    }
+    return s;
+  }
+}
+
+module.exports = {
+  toFix: filters.toFix,
+  getNum: numFr.getNum,
+  getNumNo: numFrNo.getNum,
+}

@@ -1,0 +1,191 @@
+<view style="background: url({{backgroundUrl}})repeat;width:100%;background-size:100%;">
+<view class='header' bindtap="navigatorToStatistics" data-url="statistics">
+  <view style='width:5%;'></view>
+  <view class='header-row1'>
+    <text>累计推荐奖励</text>
+  </view>
+  <view class='header-row2'>
+    元<text class='money-text'>{{coin}}</text>
+  </view>
+  <view style='width:5%;'></view>
+</view>
+<view class='one'>
+  <view style='height:32rpx;'></view>
+  <view class='history'>
+  <view class='history-row1'>一个邀请码只可邀请一个用户</view>
+  <view class='history-row2' bindtap='showDialogBtn2'>历史邀请码></view>
+  </view>
+  <view style='height:32rpx;'></view>
+  <view class='one-input'>
+    <view class='one-input1'>
+      <image src='{{src}}' data-src='{{qrcode}}' bindtap="listenerButtonPreviewImage" style='height:60rpx;width:60rpx;' wx:if='{{inviteCode!=null}}'></image>
+    </view>
+    <view style="display:flex;align-items: center;margin-right:36rpx;">
+      <view class='one-input2'>{{inviteCode!=null?inviteCode:'暂无邀请码'}}</view>
+      <view class="{{codeState==1?'style1':codeState==2?'style2':''}}">{{codeState==2?'未使用':codeState==1?'已使用':''}}</view>
+    </view>
+    <view class="{{disabled?'one-input4':'one-input3'}}" bindtap="{{disabled?'':'createCode'}}">
+      <text class='one-input3-text1'>生成邀请码</text>
+      <text class='one-input3-text2'>已生成:{{hasCode}}/{{codeCount}}</text>
+    </view>
+  </view>
+</view>
+<view class='two'>
+  <view style='width:10%;'></view>
+  <view class='two-row1'>
+    <text>邀请注册：</text>
+    <button open-type='share' class='shareBtn'>
+      <image src='./icon/center_icon_yaoqinghaoyou.jpg' style='height:50rpx;width:50rpx;'></image>
+    </button>
+  </view>
+  <view class='two-row2' style="display:flex;">
+     <navigator url="../outurl/recomment">推荐人规则</navigator>
+  </view>
+  <view style='width:10%;'></view>
+</view>
+<view class='three'>
+  <view class='three-center'>
+    <!-- <view class="userNum {{currentTab==0 ? 'inactivatedUser' : 'inactivatedUser1'}}">{{inactivatedUser == null ? 0 :inactivatedUser }}</view>  -->
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">未激活用户[{{inactivatedUser == null ? 0 :inactivatedUser}}]</view>
+    <!-- <view class="userNum {{currentTab==1 ? 'ActivatedUser' : 'ActivatedUser1'}}" >{{ActivatedUser == null ? 0 : ActivatedUser}}</view> -->
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">已激活用户[{{ActivatedUser == null ? 0 :ActivatedUser}}]</view>
+  </view>
+</view>
+<view class="swiper-box" bindchange="bindChange" style="{{showModal2?'position: fixed;':''}}">
+   <view class='swiper-box-row' wx:if="{{currentTab == 0}}">
+    <view wx:for='{{tasklist}}' wx:key='unique' wx:if='{{tasklist.length > 0}}' class="swiper-box-row-list">
+      <view class='swiper-box-rows' style="padding:20rpx;padding-left:40rpx;">
+        <view class='swiper-box-row1'>
+          <view style='height:25rpx;width:100%;'></view>
+          <image src="{{item.headImage != null?item.headImage:'./icon/img_touxiang.png'}}" style='height:150rpx;width:150rpx;border-radius:50%;' background-size="cover"></image>
+        </view>
+        <view class='swiper-box-row2'>
+          <!-- <view style='height:25rpx;'></view> -->
+          <view>
+          <text class='swiper-box-text1' style='margin-top:20rpx;margin-bottom:0rpx;'>{{item.name}}</text>
+          <image src="./icon/icon_phone.png" style="margin-left:52rpx;width:35rpx;height:35rpx;" bindtap="makePhoneCall" data-id="{{item.name}}"></image>
+          </view>
+          <view>
+          <text class="swiper-box-text2">备注：</text>
+          <text class="swiper-box-text4-child" wx:if="{{!item.isEdited}}">{{item.note==null?'':item.note}}</text>
+          <image wx:if="{{!item.isEdited}}" src='./icon/icon_edit.png' style="margin-left:25px;width:30rpx;height:30rpx;" data-index="{{index}}" data-type="1" bindtap="clickEdit"></image>
+          </view>
+          <view>
+          <text class="swiper-box-text4">状态：</text> 
+          <text class="swiper-box-text4-child">{{item.audit_status}}</text>
+          </view>
+          <!-- <text style='height:10rpx;'></text> -->
+          <view class='swiper-box-text2'>平台ID：{{item.code}}</view>
+           <!-- <text style='height:10rpx;'></text>  -->
+          <view class='swiper-box-text2'>注册时间：{{item.gmtTime}}</view>
+        </view>
+         <view class='swiper-box-row3'>
+           <view style='height:80rpx;'></view>
+          <text class='swiper-box-btn1' bindtap='showDialogBtn' data-promoterId='{{index}}'>移除成员</text>
+        </view>
+      </view>
+    </view>
+    <view wx:if='{{tasklist.length == 0}}' class='bottom'>暂无数据</view>
+    <view wx:if='{{tasklist == null}}' class='bottom'>暂无数据</view>
+  </view>
+  <view class='swiper-box-row' wx:if="{{currentTab == 1}}">
+    <view wx:for='{{tasklist2}}' wx:key='unique' wx:if='{{tasklist2.length > 0}}' class="swiper-box-row-list">
+      <view class='swiper-box-rows swiper-box-row-next'>
+        <view class='swiper-box-row1'>
+          <view style='height:15rpx;width:100%;'></view>
+          <image src="{{item.headImage != null?item.headImage:'./icon/img_touxiang.png'}}" style='height:150rpx;width:150rpx;border-radius:50%;' background-size="cover"></image>
+          <text class="name_style">{{item.real_name!=null&&item.real_name!=""?item.real_name:''}}</text>
+        </view>
+        <view class='swiper-box-row2'>
+          <!-- <view style='height:15rpx;'></view> -->
+          <view style="margin-bottom:10rpx;">
+          <text class='swiper-box-text1'>{{item.name}}</text>
+          <image src="./icon/icon_phone.png" style="margin-left:52rpx;width:35rpx;height:35rpx;" bindtap="makePhoneCall" data-id="{{item.name}}"></image>
+          </view>
+          <view>
+          <text class="swiper-box-text2">备注：</text>
+          <text class="swiper-box-text4-child" wx:if="{{!item.isEdited}}">{{item.note==null?'':item.note}}</text>
+          <image wx:if="{{!item.isEdited}}" src='./icon/icon_edit.png' style="margin-left:25px;width:30rpx;height:30rpx;" data-index="{{index}}" data-type="2" bindtap="clickEdit"></image>
+          <!-- <input wx:else value="{{note}}" bindinput="bindKeyInput" bindblur="onBlur" data-index="{{index}}" data-id="{{item.id}}" class="edit_input" type="text"></input> -->
+          </view>
+          <text class='swiper-box-text2'>平台ID：{{item.code}}</text>
+          <text style='height:5rpx;'></text>
+          <view class='swiper-box-text2'>
+            <text style="margin-right:14rpx;">{{item.lastMonthLabel}}:{{item.lastMonthAmount}}笔</text>
+            <text style="margin-right:14rpx;">{{item.currentMonthLabel}}:{{item.currentMonthAmount}}笔</text>
+            
+          </view>
+          <text style='height:5rpx;'></text>
+          <view class='swiper-box-text2'>任务总计：{{item.orders}}笔</view>
+          <text style='height:5rpx;'></text>
+          <view class='swiper-box-text2'>注册时间：{{item.gmtTime}}</view>
+        </view>
+        <!-- <view class='swiper-box-row3'>
+          <view style='height:25rpx;'></view>
+          <text class='swiper-box-btn1' bindtap='showDialogBtn' data-promoterId='{{index}}'>移除成员</text>
+        </view> -->
+      </view>
+    </view>
+    <view wx:if='{{tasklist2.length == 0}}' class='bottom'>暂无数据</view>
+    <view wx:if='{{tasklist2 == null}}' class='bottom'>暂无数据</view>
+    <view class="operation">
+      <view><image src="../icon/back.png" class="searchIcon" wx:if="{{showBack}}" bindtap="backToreferee"></image></view>
+      <view><image src="../icon/search.png" class="searchIcon" wx:if="{{showIcon}}" bindtap="search"></image></view>
+    </view>
+
+  </view>
+</view>
+<!--遮罩层-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{background}}"></view>
+<!--弹窗1-->
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">提示</view>
+    <view class="modal-input">
+      <text class='modal-input-text'>确定要移除该成员吗？</text>
+    </view>
+  <view class="modal-footer">
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm" data-index="{{index}}">确定</view>
+    <view class="btn-cancel" bindtap="onCancelDetele" data-status="cancel">取消</view>
+  </view>
+</view>
+<!--弹窗2-->
+<view class="modal-dialog" wx:if="{{showModal1}}">
+  <view class="modal-title">提示</view>
+    <view class="modal-input">
+      <text class='modal-input-text'>确定要冻结该用户吗？</text>
+      <text class='modal-input-text1'>推荐人管理条例</text>
+    </view>
+  <view class="modal-footer">
+    <view class="btn-confirm" bindtap="onConfirm1" data-status="confirm">确定</view>
+    <view class="btn-cancel" bindtap="onCancel1" data-status="cancel">取消</view>
+  </view>
+</view>
+<!-- 弹窗3 -->
+<view class="modal-dialog" wx:if="{{showModal3}}">
+  <view class="modal-title">编辑备注</view>
+  <view class="modal-input">
+    <!-- <text class='modal-input-text'>确定要移除该成员吗？</text> -->
+    <input class="edit_input" value="{{note}}" bindinput="bindKeyInput" data-index="{{index}}" type="text"></input>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-confirm" bindtap="onBlur" data-status="confirm" data-id="{{item.id}}" data-index="{{index}}">保存</view>
+    <view class="btn-cancel" bindtap="onCancel" data-index="{{index}}" data-status="cancel">取消</view>
+  </view>
+</view>
+
+<!-- 弹窗4搜索弹框 -->
+<view class="modal-dialog" wx:if="{{showModal4}}">
+  <view class="modal-title">已激活用户搜索</view>
+  <view class="modal-input" style="height:140rpx;">
+    <input class="edit_input" value="{{keyword}}" bindinput="searchCondition" type="text" placeholder="请输入ID/手机号/姓名/备注"></input>
+  </view>
+  <view style="width:100%;text-align:center;margin-bottom:20rpx;"><text style="color:orange;font-size:32rpx;" wx:if="{{warningtext}}">无此结果，请更换搜索条件</text></view>
+  <view class="modal-footer">
+    <view class="btn-confirm" bindtap="searchSure">确定</view>
+    <view class="btn-cancel" bindtap="cancelSure">取消</view>
+  </view>
+</view>
+<loading hidden="{{hiddens?'':'hidden'}}">
+  移除中
+</loading>
+</view>

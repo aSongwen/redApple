@@ -1,0 +1,29 @@
+<view class="wrap">
+	<view class="personData">
+		<view>
+			<view class="personName">{{promoter.realName != null ? promoter.realName : ''}}</view>
+			<view class="personID">ID:{{promoter.code}}</view>
+		</view>
+		<view class="content">
+			<picker mode="date" value="{{date}}" start="{{date2}}" end="{{endTime}}" bindchange="bindDateChange" fields="month">
+			   <view class="picker">
+			       {{dateView}}
+			   </view>
+			</picker>
+		</view>
+		<view>
+    <view class="personName">任务总数</view>
+		<view class="personID">{{total}}笔</view>
+		</view>
+	</view>
+	<view class="detail">
+		<view class="detailTitle">
+			<view class="taskTime">{{home_menu_data.persion_0003}}时间</view>
+			<view style="width:150rpx;font-size:26rpx;color:#666;font-weight:bolder;">{{home_menu_data.persion_0003}}号</view>
+		</view>
+		<view class="detailTitle detailtask" wx:for="{{taskList}}" wx:key="unique" wx:if='{{taskList.length > 0}}'>
+			<view style="width:40%;">{{item.realStartTime}}</view>
+			<view>{{item.id}}</view>
+		</view>
+	</view>
+</view>

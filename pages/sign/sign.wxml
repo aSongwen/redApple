@@ -1,0 +1,95 @@
+<!--pages/sign/sign.wxml-->
+<view style='height:{{height-70}}px;width:100%;'>
+  <view class='one'>
+    <view class='one-row1'>
+      <view style='width:5%;'></view>
+      <view class='one-row1-row1'>
+        <view class='one-row1-row1-column1'>{{date_time}}</view>
+        <view class='one-row1-row1-column2'>{{days}}</view>
+      </view>
+      <view class='one-row1-row2'>
+        <view class='signbtn'>
+          <text>签到规则</text>
+          <view style='width:10rpx;'></view>
+          <image style='height:40rpx;width:40rpx;' src='./icon/icon_guize.png'></image>
+        </view>
+      </view>
+    </view>
+    <view style='height:100rpx;'></view>
+    <view class='one-row2'>
+      <image src='./icon/btn_dianjiqiandao.png' style='width:260rpx;height:100rpx;' bindtap="calendarSign" wx:if="{{date!=calendarSignData[date]}}"></image>
+      <image src='./icon/btn_yiqiandao_dis.png' style='width:260rpx;height:100rpx;' wx:else></image>
+    </view>
+    <view style='height:20rpx;'></view>
+    <view class='one-row3'>
+      <view style='width:5%;'></view>
+      <view class='one-row3-row1'>
+        ------
+      </view>
+      <view class='one-row3-row2'>
+        <text wx:if='{{calendarSignDay<10}}'>本月已签到0{{calendarSignDay}}天</text>
+        <text wx:else>本月已签到{{calendarSignDay}}天</text>
+      </view>
+      <view class='one-row3-row3'>
+        ------
+      </view>
+      <view style='width:5%;'></view>
+    </view>
+    <view class='one-row4'>
+      我的积分：{{integral}}
+    </view>
+  </view>
+  <view class='two'>
+    <view style='width:5%;'></view>
+    <view class='two-row'>
+      <view class="weekName">
+        <view class="sunday">日</view>
+        <view class="monday">一</view>
+        <view class="tuesday">二</view>
+        <view class="wednesday">三</view>
+        <view class="thursday">四</view>
+        <view class="friday">五</view>
+        <view class="saturday">六</view>
+      </view>
+      <view class="week">
+
+        <!--填补空格-->
+        <view wx:for="{{nbsp}}" wx:key='unquie'><view>　</view></view>
+
+        <!--开心循环日期-->
+        <view wx:for="{{date-1}}" wx:key='unquie1'>
+          <view>
+            <view wx:if="{{item+1==calendarSignData[item+1]}}" style="position: relative;">
+              {{item+1}}<image src='./icon/msg_qiandao.png' class='sigin-img'></image>
+            </view>
+            <text wx:else="">{{item+1}}</text>
+          </view>
+        </view>
+        <view>
+          <view>
+            <view wx:if="{{date==calendarSignData[date]}}" style="position: relative;">{{date}}
+              <image src='./icon/msg_qiandao.png' class='sigin-img'></image>
+            </view>
+            <text wx:else="">{{date}}</text>
+          </view>
+        </view>
+        <view wx:for="{{monthDaySize-date}}" wx:key='unquie2'><view>{{item+date+1}}</view></view>
+      </view>
+    </view>
+    <view style='width:5%;'></view>
+  </view>
+  <view class='three'>
+    更多活动信息请关注　<text style='color:#5da9ff'>微信公众号</text>
+  </view>
+</view>
+<!--弹窗-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view style='height:25%;'></view>
+  <view class='modal-show'>
+    <view class="modal-title">获得5积分</view>
+    <view class='modal-center' wx:if='{{calendarSignDay<10}}'>本月已签到0{{calendarSignDay}}天</view>
+    <view class='modal-center' wx:else>本月已签到{{calendarSignDay}}天</view>
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">知道了</view>
+  </view>
+</view>

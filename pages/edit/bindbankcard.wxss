@@ -1,0 +1,90 @@
+/* pages/commission/bindbankcard.wxss */
+page{
+  background-color: #fff;
+}
+.one{
+  width: 100%;
+  height: 80rpx;
+  color: #999999;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  background: #f4f9ff;
+}
+.one .nameColor{
+  color:#f54747;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.two{
+  width: 100%;
+  color: #333333;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  background-color: #ffffff;
+}
+.three{
+  width: 100%;
+  color: #333333;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  border-bottom: 0.5rpx solid #cdcdcd;
+}
+.three-text{
+  width: 60%;
+  color: #333333;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.three-text1{
+  /* width: 50%; */
+  height: 100%;
+  color: #333333;
+  display: flex;
+  align-items: center;
+}
+.three-text2{
+  width: 50%;
+  height: 100%;
+  color: #999999;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.four{
+  width: 100%;
+  color: #333333;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  border-bottom: 1rpx #cdcdcd solid;
+}
+.input{
+  width: 70%;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.show-view-row4-btn {
+  margin-top: 100rpx;
+  height: 90rpx;
+  width: 560rpx;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 40rpx;
+  background-color: #f54747;
+  color: #ffffff;
+}
+.tip{
+  width:97%;
+  line-height: 50rpx;
+  padding:0 20rpx;
+  color:#f54747;
+  font-size:30rpx;
+  margin-top: 90rpx;
+}

@@ -1,0 +1,24 @@
+<view class='heard' style='height:{{height}}px'>
+  <view style='height:15px;'></view>
+  <view class='msg-box'>
+    <view class='msg-box-show'>
+      <view class='msg-box-view1'>
+        <view style='width:5%;'></view>
+        <view class='msg-box-view1-view1'>{{msg.title}}</view>
+      </view>
+      <view class='msg-box-view2'>
+        <view style='height:20rpx;'></view>
+        <view wx:for='{{msg.arr}}' wx:key='2' style='width:90%;' wx:if='{{msg.type==1}}'>
+          <view class='msg-box-view2-text'>{{item}}</view>
+        </view>
+        <view wx:for='{{msg.arr}}' wx:key='2' style='width:90%;' wx:if='{{msg.type==2}}'>
+          <view class='msg-box-view2-replace'>{{item}}</view>
+        </view>
+        <!-- <view class='msg-box-view2-text' wx:if='{{msg.arr[0] != null}}'>{{msg.arr[0]}}</view>
+        <view class='msg-box-view2-text' wx:if='{{msg.arr[1] != null}}'>{{msg.arr[1]}}</view>
+        <view class='msg-box-view2-text' wx:if='{{msg.arr[3] != null}}'>{{msg.arr[3]}}</view> -->
+        <view class='msg-box-view2-text' wx:if='{{msg != null}}'>时间:{{msg.time}}</view>
+      </view>
+    </view>
+  </view>
+</view>

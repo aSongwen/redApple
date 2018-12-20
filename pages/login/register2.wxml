@@ -1,0 +1,64 @@
+<view class='headers'>
+  <view class='headers-box'>
+    <text class='headers-box-text1'>1.邀请注册</text>
+    <text class='headers-box-text2'>2.账号绑定</text>
+    <text class='headers-box-text2'>3.等待审核</text>
+  </view>
+</view>
+<view class='userinfo'>
+  <view class='userinfo-step'>
+  </view>
+  <image class="userinfo-avatar" src="./icon/img_touxiang.png" background-size="cover"></image>
+  <view style='height:30rpx;'></view>
+  <text class='userinfo-text' wx:if="{{inviting!=null&&inviting!=''}}">您是来自"{{inviting}}"的邀请注册</text>
+  <view class='userinfo-input'>
+    <text class='userinfo-input-text'>+86</text>
+    <input class='userinfo-input-input' type='number' placeholder='请输入手机号码' maxlength='11' name='phone' bindinput='setPhone'></input>
+  </view>
+  <view style='height:30rpx;' />
+    <view class='userinfo-input'>
+    <input class='userinfo-input-input2' placeholder="请输入邀请码" value="{{inviteCode!=null?inviteCode:''}}" maxlength='6' bindinput='setCode'></input>
+    <button type="button" class="userinfo-input-btnshow" bindtap="checkCode">验证邀请码</button>
+  </view>
+
+  <view style='height:30rpx;' />
+  <view class='userinfo-input'>
+    <input class='userinfo-input-input2' type='number' placeholder='请输入验证码' maxlength='6' name='code' bindinput='setMobileCode'></input>
+    <button class="{{is_show?'userinfo-input-btnshow':'userinfo-input-btnhide'}}" open-type='getUserInfo' bindgetuserinfo="clickVerify" disabled='{{checkCode}}'>获取验证码</button>
+    <button class="{{is_show?'userinfo-input-btnhide':'userinfo-input-btnshow'}}" disabled='{{checkCode}}'>{{last_time}}s</button>
+  </view>
+
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{modalAuthShow}}"></view>
+  <view class="modal-dialog" wx:if="{{modalAuthShow}}">
+  <view class="dialogImg">
+    <image src="./icon/photo.png"></image>
+  </view>
+  <view class="modal-content">
+   为了能更好的为您提供安全服务，请开启位置和信息授权！
+  </view>
+  <view class="modal-footer">
+    <button class="btn-cancel" bindtap="modalBindcancel" data-status="cancel">再想想</button>
+    <button class="btn-confirm" open-type="openSetting" bindopensetting="callback" >立即授权</button>
+  </view>
+    <view class="dialogClose">
+      <image src="./icon/icon_qx.png" bindtap="modalBindcancel" ></image>
+    </view>
+</view>
+
+  <view style='height:100rpx;' />
+  <button class='submit-btn' open-type='getUserInfo' bindgetuserinfo="getFirstUserInfo" disabled='{{disabled}}'>确认注册，进入下一步</button>
+  <view style='height:20rpx;'></view>
+  <navigator open-type='redirect' url='./login' style='color:#47adf5;' wx:if='{{!codebool}}'>已有账号,直接登陆</navigator>
+</view>
+<loading hidden="{{!disabled?'hidden':''}}">
+  注册中...
+</loading>
+<loading hidden="{{!checkCode?'hidden':''}}">
+  发送验证码中...
+</loading>
+<loading hidden="{{!checkMobile?'hidden':''}}">
+  判断手机号码是否可用...
+</loading>
+<loading hidden="{{!checkCode2?'hidden':''}}">
+  判断邀请码是否可用...
+</loading>

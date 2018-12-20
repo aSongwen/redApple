@@ -1,0 +1,16 @@
+.template-input{
+  border: 1px solid #aaa;
+  border-radius: 10rpx;
+  height: 100rpx;
+  width: 560rpx;
+}
+
+.template-entry {
+  border:2rpx #aaa solid;
+  border-radius: 0rpx;
+}
+
+.template-button {
+  color: white;
+  background-color: #E94F4F;
+}

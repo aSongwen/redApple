@@ -1,0 +1,22 @@
+.header{
+  width: 100%;
+  background-color: #ffffff;
+}
+.images{
+  width: 100%;
+  text-align:center;
+}
+.text1{
+  width: 100%;
+  text-align:center;
+  font-size: 40rpx;
+  color: #333333;
+  font-weight: bold;
+}
+.text2{
+  height: 60rpx;
+  width: 100%;
+  text-align:center;
+  font-size: 30rpx;
+  color: #333333;
+}

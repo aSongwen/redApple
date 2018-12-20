@@ -1,0 +1,12 @@
+<view class='header' style='height:{{height}}px'>
+  <view style='height:60rpx;'></view>
+  <view class='images'>
+    <image src='../icon/img_xianzhifangwen.png' mode='widthFix' style='width:124rpx;'></image>
+  </view>
+  <view style='height:100rpx;'></view>
+  <view class='text1'>限制访问</view>
+  <view style='height:74rpx;'></view>
+  <view class='text2'>您严重违反平台规则,管理员暂时冻结您的账户</view>
+  <view style='height:30rpx;'></view>
+  <view class='text2'>具体情况请联系管理员处理</view>
+</view>

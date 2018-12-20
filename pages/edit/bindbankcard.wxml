@@ -1,0 +1,43 @@
+<!--pages/commission/bindbankcard.wxml-->
+<view class='one'>
+  <view style='width:5%;'></view>
+  <text>请添加 <text class="nameColor"> {{bankCardName}} </text> 本人的银行卡</text>
+</view>
+<view class='three'>
+  <view style='width:5%;'></view>
+  <text style='width:20%;'>开户银行</text>
+  <view style='width:5%;'></view>
+  <view class='three-text'>
+    <!-- <input bindinput='setBankName' value="{{bankName_old}}"></input> -->
+     <text class='three-text1' wx:if="{{array[index]!=null&&array[index]!=''}}">{{array[index]}}</text>
+     <text class='three-text1' wx:if="{{bankName_old!=null&&bankName_old!=''}}">{{bankName_old}}</text> 
+    <text class='three-text1' wx:else></text> 
+     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class='three-text2'>
+      <text>请选择</text>
+    </picker> 
+  </view>
+  <!-- <view style='width:2%;'></view>
+  <view style='width:5%;'>
+    <image src='./icon/icon_zhankai.png' style='height:30rpx;width:17rpx;'></image>
+  </view> -->
+  <view style='width:3%;'></view>
+</view>
+<view class='four'>
+  <view style='width:5%;'></view>
+  <text style='width:20%;'>卡号</text>
+  <view style='width:5%;'></view>
+  <!-- <input class='input' bindinput='setbankNumber' maxlength='19'></input> -->
+  <input class='input' bindinput='setbankNumber' value='{{bankCardNum}}'></input>
+</view>
+<view class='show-view-row4'>
+  <button class='show-view-row4-btn' bindtap='saveCard'>保存</button>
+</view>
+<loading hidden="{{loading?'hidden':''}}">
+  保存中...
+</loading>
+<view class="tip">
+  <view>温馨提示：</view>
+  <view>1.为了您的账号资金安全，只能绑定认证用户本人的银行卡</view>
+  <view>2.信息错误次数超过5次后，只能次日在添加</view>
+  <view>3.暂不支持绑定信用卡提现</view>
+</view>

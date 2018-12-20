@@ -1,0 +1,76 @@
+<!--pages/login/taobao/Auditing/Auditing.wxml-->
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100vh;background-size:100%;">
+<view class='show-view'>
+  <view class='show-view-flex1'>
+    <view style='height:50rpx;' />
+    <image src='./icon/icon_tijaochenggong.png' mode='widthFix' style='width:124rpx;' />
+     <view style='height:20rpx;' /> 
+    <text class='show-view-flex1-text'>您的{{home_menu_data.persion_0003}}等待商家审核</text>
+    <!--<text wx:if="{{(taskAuditMode == 1 || taskAuditMode == null) && AuditingType == 0}}" class='show-view-flex1-text'>您的{{home_menu_data.persion_0003}}等待平台审核</text>-->
+  </view>
+  <view style='height:24rpx;' />
+  <view class='show-view-flex4' wx:if='{{AuditingType == 0}}'>
+    <view class='show-view-flex4-view'>
+      <view style='height:32rpx;' />
+      <view class='show-view-flex4-view1' wx:if='{{taskAuditMode!=2}}'>
+        <view class="lists">
+          <text>商家将在</text>
+          <text style='color:#f54747'>{{last_format}}</text>
+          <text>前</text>
+        </view>
+        <view  class="lists">
+          <text>对账户"</text>
+          <text style='color:#f54747'>{{user.taobao}}</text>
+          <text>"审核完毕</text>
+        </view>
+      </view>
+      <view style='height:32rpx;' />
+      <view>
+        <view class='show-view-flex4-view2'>
+          <view class='show-view-flex4-radius'>1</view>
+          <view style='width:24rpx;'></view>
+          <view>审核付款的店铺和链接是否正确</view>
+        </view>
+        <view style='height:32rpx;' />
+        <view class='show-view-flex4-view2'>
+          <view class='show-view-flex4-radius'>2</view>
+          <view style='width:24rpx;'></view>
+          <view>审核付款账号的金额是否正确</view>
+        </view>
+        <view style='height:32rpx;' />
+        <view class='show-view-flex4-view2'>
+          <view class='show-view-flex4-radius'>3</view>
+          <view style='width:24rpx;'></view>
+          <view>核对付款方式以及{{home_menu_data.persion_0003}}要求是否符合</view>
+        </view>
+      </view>
+      <view style='height:32rpx;' />
+      <!-- <text class='show-view-flex2-timer'>预计在<text style='font-weight: bold;color:#333333;'>{{last_format}}</text>完成审核</text> -->
+    </view>
+  </view>
+  <view class="flowTips" wx:if='{{AuditingType == 1}}'>
+    <view>您当前任务将获得佣金<text class="colorRed">{{executePrice}}</text>元</view>
+    <view>商家将在<text class="colorRed">{{last_format}}</text>前对您的截图证明审核完毕</view>
+  </view>
+  <view class="flowList" wx:if='{{AuditingType == 1}}'>
+    <view><image src="../../icon/dengpao.png"></image>多接浏览任务可提高下单任务的优先派单率。</view>
+  </view>
+  <view class="flowList" wx:if='{{AuditingType == 0}}'>
+    <view><image src="../../icon/dengpao.png"></image>本金和佣金会根据实际付款金额提到平台账户里</view>
+    <view>如果任务审核失败了，还有一次修改的机会</view>
+  </view>
+  <view class='show-view-flex2' wx:if='{{AuditingType == 0}}'>
+    <view style='height:10rpx;'></view>
+    <view class='show-view-flex2-view' wx:if="{{retrytime<=1}}">
+      <view class='show-view-flex4-radius2'>!</view>
+      <view style='width:24rpx;'></view>
+      <view style="color:#f54747;"> 如果系统审核失败还有一次修改机会 </view>
+    </view>
+  </view>
+  <view style='height:30rpx;' />
+  <view class='show-view-flex3'>
+    <button class='show-view-flex3-btn' bindtap='toHome'>好的，我知道了！</button>
+    <view style='height:20rpx;' />
+  </view>
+</view>
+</view>

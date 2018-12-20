@@ -1,0 +1,94 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/home/task/task",
+    "pages/home/message/message",
+    "pages/home/personal/personal",
+    "pages/notice/notice",
+    "pages/notice/detail/detail",
+    "pages/login/login",
+    "pages/login/register",
+    "pages/login/register2",
+    "pages/template/template",
+    "pages/login/taobao/taobao",
+    "pages/login/taobao/Auditing/Auditing",
+    "pages/home/task/Finish/Finish",
+    "pages/home/taking/taking",
+    "pages/dispatch/dispatch",
+    "pages/dispatch/cancel",
+    "pages/dispatch/syscancel",
+    "pages/home/personal/msgbinding",
+    "pages/home/personal/referee",
+    "pages/home/personal/html",
+    "pages/home/personal/customer",
+    "pages/home/task/evaluate-task/evaluate-task",
+    "pages/home/task/revision-task/revision-task",
+    "pages/home/task/operate-task/operate-task",
+    "pages/home/task/flow-task/flow-task",
+    "pages/home/message/messagedetails/messagedetails",
+    "pages/commission/commission",
+    "pages/commission/commission2",
+    "pages/commission/cash",
+    "pages/commission/cashrecord",
+    "pages/commission/cashwait",
+    "pages/capital/capital",
+    "pages/capital/capital2",
+    "pages/capital/cash",
+    "pages/capital/cashrecord",
+    "pages/capital/cashwait",
+    "pages/edit/phone",
+    "pages/edit/qq",
+    "pages/edit/wechat",
+    "pages/edit/bindbankcard",
+    "pages/edit/idCard",
+    "pages/sign/sign",
+    "pages/moneydetail/moneydetail",
+    "pages/home/personal/histroy",
+    "pages/home/task/Auditing/Auditing",
+    "pages/home/deny/deny",
+    "pages/home/notice/notices",
+    "pages/myshop",
+      "pages/home/personal/statistics",
+    "pages/home/personal/statisticsDetails"
+
+
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#f54747",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#f54747",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "/icon/nav_icon_shouye_def.png",
+        "selectedIconPath": "/icon/nav_icon_shouye_sel.png"
+      },
+      {
+        "pagePath": "pages/home/task/task",
+        "text": "已接任务",
+        "iconPath": "/icon/nav_icon_renwu_def.png",
+        "selectedIconPath": "/icon/nav_icon_renwu_sel.png"
+      },
+      {
+        "pagePath": "pages/home/message/message",
+        "text": "消息",
+        "iconPath": "/icon/nav)wodexiaoxi_def.png",
+        "selectedIconPath": "/icon/nav)wodexiaoxi_sel.png"
+      },
+      {
+        "pagePath": "pages/home/personal/personal",
+        "text": "个人中心",
+        "iconPath": "/icon/nav_icon_centeri_def.png",
+        "selectedIconPath": "/icon/nav_icon_centeri_sel.png"
+      }
+    ]
+  }
+}

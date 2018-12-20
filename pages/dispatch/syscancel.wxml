@@ -1,0 +1,15 @@
+<!--pages/dispatch/syscancel.wxml-->
+<view class='show-view' style='height:{{height}}px;width:{{width}}'>
+  <view class='header'>
+    <text class='header-view'>!</text>
+    <view style='width:10rpx;'></view>
+    <text class='header-text'>本次取消将扣除您的完成率</text>
+  </view>
+  <view class='show-view-row1'>
+    <image src='./icon/icon_chaoshi.png' style='height:122rpx;width:118rpx'></image>
+    <view style='height:10rpx;'></view>
+    <text class='show-view-row1-text'>{{home_menu_data.persion_0003}}已超时，系统已自动取消该订单</text>
+  </view>
+  <view style='height:100rpx;'/>
+  <button class='show-view-btn' bindtap='toHome'>知道了</button>
+</view>

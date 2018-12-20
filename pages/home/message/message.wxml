@@ -1,0 +1,70 @@
+<view class='default-view' wx:if='{{tasklist == null}}' style='height:{{height}}px;width:{{width}}px;'>
+  <image src='../icon/text-message12.png' mode='widthFix' style='width:240rpx;'></image>
+  <view style='height:30rpx;'></view>
+  <view class='msg-text'>暂时没有消息通知哦~</view>
+</view>
+<!-- <view class='msg-view' style='min-height:{{height}}px;' wx:else>
+  <view wx:for='{{tasklist}}' wx:key='1' style='width:100%;'>
+    <view style='height:15px;' wx:if='{{index == 0}}'></view>
+    <navigator class='box' url='./messagedetails/messagedetails?id={{item.id}}'>
+      <view class='box-view1'>
+        <view class='box-view1-image'>
+          <image src='../icon/bill-cardlist.png' mode='widthFix' style='width:50rpx;'></image>
+        </view>
+        <view class='box-view1-text'>{{item.title}}</view>
+        <view class='box-view1-time'>{{item.time}}</view>
+      </view>
+      <view class='box-view2'>
+        <view class='left-head'>
+          <view class='readers' wx:if='{{!item.readed}}'></view>
+        </view>
+        <view class='box-view2-view1'>
+          <text class='box-view2-text1' wx:if='{{item.money != null}}'>￥{{item.money}}</text>
+          <view style='width:10rpx;' wx:if='{{item.money != null}}'></view>
+          <text class='box-view2-text2' wx:if='{{item.money != null}}'>已到账</text>
+        </view>
+      </view>
+      <view class='box-view3'>
+        <view style='width:10%;'></view>
+        <text class='box-view3-text'>{{item.content}}</text>
+        <view style='width:20%;'></view>
+      </view>
+    </navigator>
+    <view style='height:15px;'></view>
+  </view>
+</view> -->
+<view class='msg-view' style='min-height:{{height}}px;' wx:else>
+  <view wx:for='{{tasklist}}' wx:key='1' style='width:100%;'>
+    <view style='height:15px;' wx:if='{{index == 0}}'></view>
+    <navigator class='msg-box' url='./messagedetails/messagedetails?id={{item.id}}'>
+      <view class='msg-box-show' style='height:{{item.heiht}}rpx;'>
+        <view class='msg-box-view1'>
+          <view style='width:5%;'></view>
+          <view class='msg-box-view1-view1'>{{item.title}}</view>
+          <view class='msg-box-view1-view2'>{{item.time}}</view>
+        </view>
+        <view class='msg-box-view2' wx:if='{{item.type==1}}'>
+          <view style='height:20rpx;'></view>
+          <view wx:for='{{item.arr}}' wx:key='2' style='width:90%;' >
+            <view class='msg-box-view2-text'>{{item}}</view>
+          </view>
+        </view>
+        <view class='msg-box-view2' wx:if='{{item.type==2}}'>
+          <view style='height:20rpx;'></view>
+          <view wx:for='{{item.arr}}' wx:key='2' style='width:90%;' >
+            <view class='msg-box-view2-replace'>{{item}}</view>
+          </view>
+        </view>
+        <view class='msg-box-view3'>
+          <view style='width:5%;'></view>
+          <view class='msg-box-view3-text'>
+            <view class='readers' wx:if='{{!item.readed}}'></view>
+            <view wx:if='{{!item.readed}}' style='width:10rpx;'></view>
+            查看详情
+          </view>
+        </view>
+      </view>
+    </navigator>
+    <view style='height:15px;'></view>
+  </view>
+</view>

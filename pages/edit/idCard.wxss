@@ -1,0 +1,205 @@
+page{
+  background-color: #f0f0f0;
+}
+.uploadCard{
+  display:flex;
+  justify-content:space-around;
+  width:100%;
+  height:400rpx;
+  background:#ffffff;
+  border-bottom:1rpx solid #cdcdcd;
+  margin-bottom: 20rpx;
+}
+.one{
+  display: flex;
+  width: 100%;
+  height: 80rpx;
+  align-items: center;
+  justify-content: center;
+}
+.one-text{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  color: #333333;
+  border-top:1rpx #cdcdcd solid;
+  border-bottom: 1rpx #cdcdcd solid;
+  font-size: 30rpx;
+}
+.one-row1{
+  width: 35%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 5%;
+}
+.one-row2{
+  width:100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.one-input{
+  width: 100%;
+  height: 80rpx;
+  padding-left: 30rpx;
+  font-size: 30rpx;
+}
+.two{
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  height: auto;
+  align-items: center;
+  /* justify-content: center; */
+  position:relative;
+}
+.two-input{
+  width: 100%;
+  height: 250rpx;
+  background-color: #fff;
+  font-size: 30rpx;
+  border:1rpx #cdcdcd solid;
+  border-radius:10rpx;
+  color: #ffffff;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+.shadow{
+  width:100%;
+  height:250rpx;
+  position:absolute;
+  background:#000; 
+  left:0;
+  top:0;
+  opacity:0.4;
+  z-index:6;
+}
+.shadow-text{
+  color:#f54747;
+  z-index:9;
+  position:absolute;
+  left:10%;
+  bottom:2.3rem;
+  transform: rotateZ(-25deg);
+  border:0.1rem solid #f54747;
+}
+.tip{
+  width:97%;
+  line-height: 50rpx;
+  padding:0 20rpx;
+  color:#f54747;
+  font-size:30rpx;
+  margin-top: 20rpx;
+}
+.add-img{
+  width:100%;
+  height:100%;
+}
+.add-icon{
+  width:155rpx;
+  height:155rpx;
+}
+.save{
+  width:400rpx;
+  height:100rpx;
+  background:#f54747;
+  border-radius:10rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color:#fff;
+}
+.two-input text{
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+}
+/* .three{
+  display: flex;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+} */
+.three-input{
+  width: 80%;
+  height: 80rpx;
+  background-color: #f54747;
+  font-size: 30rpx;
+  border:1rpx #cdcdcd solid;
+  color: #ffffff;
+}
+.three-input text{
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+}
+.four{
+  display: flex;
+  width: 100%;
+  height: 160rpx;
+  align-items: center;
+  justify-content: center;
+  border-top:1rpx solid #cdcdcd;
+  position:fixed;
+  bottom:0;
+  z-index:99;
+  background: #fff;
+}
+.three{
+  width: 100%;
+  color: #333333;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  font-size: 30rpx;
+  border-top: 0.5rpx solid #cdcdcd;
+  border-bottom: 0.5rpx solid #cdcdcd;
+  margin-top: 20rpx;
+}
+.three-text{
+  width: 60%;
+  color: #333333;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.three-text1{
+  /* width: 50%; */
+  height: 100%;
+  color: #333333;
+  display: flex;
+  align-items: center;
+}
+.three-text2{
+  width: 50%;
+  height: 100%;
+  color: #999999;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.four1{
+  width: 100%;
+  color: #333333;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  font-size: 30rpx;
+  border-bottom: 0.5rpx solid #cdcdcd;
+}
+.input{
+  width: 70%;
+  height: 80rpx;
+  line-height: 80rpx;
+}

@@ -1,0 +1,682 @@
+<!--pages/home/task/task.wxml-->
+<wxs module="filters" src="../../number.wxs"></wxs>
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100%;background-size:100%;">
+  <view class="taskTabs">
+    <view class="tasklist {{taskTab==0 ? 'on1' : ''}}" data-current="0" bindtap="swichTab">下单任务</view>
+    <view class="tasklist {{taskTab==1 ? 'on1' : ''}}" data-current="1" bindtap="swichTab">浏览任务</view>
+  </view>
+<view class='swiper-tab'>
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">待操作</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待审核
+    <view class="num num2" wx:if='{{cartNum2>0}}'>{{cartNum2 < 99 ? cartNum2 : '99+'}}</view></view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">已完成</view>
+  <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav" hidden="{{taskTab==1}}">评价{{home_menu_data.persion_0003}}
+    <view class="num num4" wx:if='{{cartNum4>0}}'>{{cartNum4 < 99 ? cartNum4 : '99+'}}</view></view>
+  <view class="swiper-tab-list {{currentTab==4?'on':''}}" data-current="4" bindtap="swichNav">失败{{home_menu_data.persion_0003}}
+    <view class="num num5" wx:if='{{cartNum5>0}}'>{{cartNum5 < 99 ? cartNum5 : '99+'}}</view></view>
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="400" bindchange="bindChange" style='height:{{height}}rpx;'>
+  <!-- 待操作 -->
+  <swiper-item class='swiper-item-box'>
+    <view wx:for="{{tasklist}}" wx:key='unqiue' wx:if="{{taskTab == 0}}">
+      <view style='height:30rpx;'></view>
+      <view class='content'>
+        <view class='one'>
+          <view class='one-row1'>
+            <view style='width:80%;display:flex;'>
+              <view style='width:30rpx;'></view>
+              <text class='number'>{{home_menu_data.persion_0003}}号:</text>
+              <text class='number1'>{{item.id}}</text>
+            </view>
+            <view class='one-row2'>
+              <view style='width:30rpx;'></view>
+              <view style='color:#4789f5;' bindtap='copyCode' data-id='{{item.id}}'>复制</view>
+            </view>
+          </view>
+          <view>
+            <text class='operate'>店铺名：</text>
+            <text class='operate1'>{{item.web_store_name}}</text>
+          </view>
+        </view>
+        <view class="userinfo-show">
+          <view class='userinfo-show-flex1'>
+            <image class="userinfo-avatar" src="{{item.main_image_url}}" mode="aspectFit" background-size=""></image>
+          </view>
+          <view class='userinfo-show-flex2'>
+            <view class="two">
+              <text class='dollar'>¥</text>
+              <text class='money'>{{item.execute_price}}</text>
+            </view>
+            <view class="three">
+              <text class='payment'>{{home_menu_data.home_0018}}金额：</text>
+              <text class='sum'>{{filters.getNumNo(item.used_amount!=null?item.used_amount:item.price*item.buy_count)}}</text>
+            </view>
+            <view class="four">
+              <text class='amount'>拍下数量：</text>
+              <text class='count'>{{item.buy_count}}件</text>
+            </view>
+          </view>
+          <view class='userinfo-show-flex3'>
+            <navigator url='/pages/home/task/operate-task/operate-task?id={{item.id}}'>
+              <button class='commit'>待操作</button>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:for="{{tasklist}}" wx:key='unqiue' wx:if="{{taskTab == 1}}">
+      <view style='height:30rpx;'></view>
+      <view class='content'>
+        <view class='one'>
+          <view class='one-row1'>
+            <view style='width:80%;display:flex;'>
+              <view style='width:30rpx;'></view>
+              <text class='number'>{{home_menu_data.persion_0003}}号:</text>
+              <text class='number1'>{{item.id}}</text>
+            </view>
+            <view class='one-row2'>
+              <view style='width:30rpx;'></view>
+              <view style='color:#4789f5;' bindtap='copyCode' data-id='{{item.id}}'>复制</view>
+            </view>
+          </view>
+          <view>
+            <text class='operate'>店铺名：</text>
+            <text class='operate1'>{{item.web_store_name}}</text>
+          </view>
+        </view>
+        <view class="userinfo-show">
+            <view class='userinfo-show-flex1'>
+                <image class="userinfo-avatar" src="{{item.main_image_url}}" mode="aspectFit"></image>
+            </view>
+            <view>
+                <view class='userinfo-show-flex2 userinfo-show-left'>
+                    <view class="two">
+                        <text class='dollar'>¥</text>
+                        <text class='money'>{{item.execute_price}}</text>
+                    </view>
+                    <view class="three">
+                        <text>任务类型：{{item.taskType}}</text>
+                    </view>
+                </view>
+                <view class="userinfo-show-right" style="display: flex;justify-content: flex-end">
+                    <navigator url='/pages/home/task/flow-task/flow-task?id={{item.id}}' style="width:150rpx;">
+                        <button class='commit-11'>待操作</button>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+      </view>
+    </view>
+    <view style='height:20rpx;'></view>
+    <view wx:if='{{notResultsFlag_operate}}' class='bottom1'>
+      <image src='../icon/msg_wudingdan.png' mode='widthFix' style='width:240rpx;'></image>
+      <view style='height:30rpx;'></view>
+      <view class='msg-text'>您还没有相关的订单{{home_menu_data.persion_0003}}</view>
+    </view>
+    <view wx:if='{{!searchLoadingComplete1}}' class='bottom'>加载中</view>
+  </swiper-item>
+  <!-- 待审核 -->
+  <swiper-item style="width:100%; height:100%">
+    <view wx:for="{{tasklist2}}" wx:key='unqiue' wx:if="{{taskTab == 0}}">
+      <view style='height:30rpx;'></view>
+      <view class='content' wx:if='{{item.shokey_status == 1 || item.shokey_status == 2 || item.shokey_status==3}}'>
+        <view class='one'>
+          <view class='one-row1'>
+            <view style='width:80%;display:flex;'>
+              <view style='width:30rpx;'></view>
+              <text class='number'>{{home_menu_data.persion_0003}}号:</text>
+              <text class='number1'>{{item.id}}</text>
+            </view>
+            <view class='one-row2'>
+              <view style='width:30rpx;'></view>
+              <view style='color:#4789f5;' bindtap='copyCode' data-id='{{item.id}}'>复制</view>
+            </view>
+          </view>
+          <view class='one-row1'>
+            <view style='width:50%;display:flex;'>
+              <text class='operate'>店铺名:</text>
+              <text class='operate1'>{{item.web_store_name}}</text>
+            </view>
+            <view class='one-row3' wx:if="{{item.audit_mode!=2}}">
+              <view style='width:30rpx;'></view>
+              <text class='operate-view'>完成审核</text>
+              <text class='operate1'>{{item.gmtTime}}</text>
+              <text class='operate-view'>预计</text>
+            </view>
+            <view class='one-row3' wx:if="{{item.audit_mode == 2}}">
+              <text class='operate-view-2'>等待商家审核</text>
+            </view>
+          </view>
+        </view>
+        <view class="userinfo-show">
+          <view class='userinfo-show-flex1'>
+            <image class="userinfo-avatar" src="{{item.main_image_url}}" mode="aspectFit" background-size=""></image>
+        </view>
+            <view>
+                <view class='userinfo-show-flex2 userinfo-show-left'>
+                    <view class="two">
+                        <text class='dollar'>¥</text>
+                        <text class='money'>{{item.execute_price}}</text>
+                    </view>
+                    <view class="three">
+                        <text class='payment'>{{home_menu_data.home_0018}}金额：</text>
+                        <text class='sum'>{{filters.getNumNo(item.used_amount!=null?item.used_amount:item.price*item.buy_count)}}</text>
+                    </view>
+                    <view class="four">
+                        <text class='amount'>拍下数量：</text>
+                        <text class='count'>{{item.buy_count}}件</text>
+                    </view>
+                </view>
+                <view class="userinfo-show-right">
+                    <button wx:if='{{item.hurry > -1 }}'  class='{{item.hurryCss}}' bindtap='setHurryOrder' data-index="{{item}}">催单</button>
+                    <button class='Reminders Reminders1'>待审核</button>
+                </view>
+            </view>
+        </view>
+      </view>
+      <view class='content' wx:if='{{item.shokey_status == 4}}'>
+        <view class='noexist' wx:if='{{item.shokey_status == 4}}'>
+          <view class='operate2'>
+            <image src="{{src1}}" mode="aspectFit" style='width:40rpx;height:40rpx;'></image>
+          </view>
+          <view class='operate3'>
+            <text class='operate3-text'>{{item.fail_reason}}</text>
+          </view>
+          <text class='operate4'></text>
+        </view>
+        <view class='operate5-view'>
+          <image class='operate5' src="{{src2}}" mode="aspectFit"></image>
+        </view>
+        <view class='one'>
+          <view class='one-row1'>
+            <view style='width:80%;display:flex;'>
+              <view style='width:30rpx;'></view>
+              <text class='number'>{{home_menu_data.persion_0003}}号:</text>
+              <text class='number1'>{{item.id}}</text>
+            </view>
+            <view class='one-row2'>
+              <view style='width:30rpx;'></view>
+              <view style='color:#4789f5;' bindtap='copyCode' data-id='{{item.id}}'>复制</view>
+            </view>
+          </view>
+          <view>
+            <text class='operate'>店铺名：</text>
+            <text class='operate1'>{{item.web_store_name}}</text>
+          </view>
+        </view>
+        <view class="userinfo-show">
+          <view class='userinfo-show-flex1'>
+            <image class="userinfo-avatar" src="{{item.main_image_url}}" mode="aspectFit" background-size=""></image>
+          </view>
+          <view class='userinfo-show-flex2'>
+            <view class="two">
+              <text class='dollar'>¥</text>
+              <text class='money'>{{item.execute_price}}</text>
+            </view>
+            <view class="three">
+              <text class='payment'>{{home_menu_data.home_0018}}金额：</text>
+              <text class='sum'>{{filters.getNumNo(item.used_amount!=null?item.used_amount:item.price*item.buy_count)}}</text>
+            </view>
+            <view class="four">
+              <text class='amount'>拍下数量：</text>
+              <text class='count'>{{item.buy_count}}件</text>
+            </view>
+          </view>
+          <view class='userinfo-show-flex3'>
+            <navigator url='/pages/home/task/revision-task/revision-task?id={{item.id}}'>
+              <button class='commit2'>去修正</button>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:for="{{tasklist2}}" wx:key='unqiue' wx:if="{{taskTab == 1}}">
+      <view style='height:30rpx;'></view>
+      <view class='content' wx:if='{{item.status == 3}}'>
+        <view class='one'>
+          <view class='one-row1'>
+            <view style='width:80%;display:flex;'>
+              <view style='width:30rpx;'></view>
+              <text class='number'>{{home_menu_data.persion_0003}}号:</text>
+              <text class='number1'>{{item.id}}</text>
+            </view>
+            <view class='one-row2'>
+              <view style='width:30rpx;'></view>
+              <view style='color:#4789f5;' bindtap='copyCode' data-id='{{item.id}}'>复制</view>
+            </view>
+          </view>
+          <view class='one-row1'>
+            <view style='width:50%;display:flex;'>
+              <text class='operate'>店铺名:</text>
+              <text class='operate1'>{{item.web_store_name}}</text>
+            </view>
+            <view class='one-row3' wx:if="{{item.audit_mode!=2}}">
+              <view style='width:30rpx;'></view>
+              <text class='operate-view'>完成审核</text>
+              <text class='operate1'>{{item.real_end_time}}</text>
+              <text class='operate-view'>预计</text>
+            </view>
+            <view class='one-row3' wx:if="{{item.audit_mode == 2}}">
+              <text class='operate-view-2'>等待商家审核</text>
+            </view>
+          </view>
+        </view>
+        <view class="userinfo-show">
+          <view class='userinfo-show-flex1'>
+            <image class="userinfo-avatar" src="{{item.main_image_url}}" mode="aspectFit" background-size=""></image>
+          </view>
+          <view>
+            <view class='userinfo-show-flex2 userinfo-show-left'>
+              <view class="two">
+                <text class='dollar'>¥</text>
+                <text class='money'>{{item.execute_price}}</text>
+              </view>
+              <view class="three">
+                <text>任务类型：{{item.taskType}}</text>
+              </view>
+            </view>
+            <view class="userinfo-show-right">
+              <button wx:if='{{item.hurry > -1 }}'  class='{{item.hurryCss}}' bindtap='setHurryOrder' data-index="{{item}}">催单</button>
+              <button class='Reminders Reminders1'>待审核</button>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='content' wx:if='{{item.shokey_status == 4}}'>
+        <view class='noexist' wx:if='{{item.shokey_status == 4}}'>
+          <view class='operate2'>
+            <image src="{{src1}}" mode="aspectFit" style='width:40rpx;height:40rpx;'></image>
+          </view>
+          <view class='operate3'>
+            <text class='operate3-text'>{{item.fail_reason}}</text>
+          </view>
+          <text class='operate4'></text>
+        </view>
+        <view class='operate5-view'>
+          <image class='operate5' src="{{src2}}" mode="aspectFit"></image>
+        </view>
+        <view class='one'>
+          <view class='one-row1'>
+            <view style='width:80%;display:flex;'>
+              <view style='width:30rpx;'></view>
+              <text class='number'>{{home_menu_data.persion_0003}}号:</text>
+              <text class='number1'>{{item.id}}</text>
+            </view>
+            <view class='one-row2'>
+              <view style='width:30rpx;'></view>
+              <view style='color:#4789f5;' bindtap='copyCode' data-id='{{item.id}}'>复制</view>
+            </view>
+          </view>
+          <view>
+            <text class='operate'>店铺名：</text>
+            <text class='operate1'>{{item.web_store_name}}</text>
+          </view>
+        </view>
+        <view class="userinfo-show">
+          <view class='userinfo-show-flex1'>
+            <image class="userinfo-avatar" src="{{item.main_image_url}}" mode="aspectFit" background-size=""></image>
+          </view>
+          <view class='userinfo-show-flex2'>
+            <view class="two">
+              <text class='dollar'>¥</text>
+              <text class='money'>{{item.execute_price}}</text>
+            </view>
+            <view class="three">
+              <text class='payment'>{{home_menu_data.home_0018}}金额：</text>
+              <text class='sum'>{{filters.getNumNo(item.used_amount!=null?item.used_amount:item.price*item.buy_count)}}</text>
+            </view>
+            <view class="four">
+              <text class='amount'>拍下数量：</text>
+              <text class='count'>{{item.buy_count}}件</text>
+            </view>
+          </view>
+          <view class='userinfo-show-flex3'>
+            <navigator url='/pages/home/task/revision-task/revision-task?id={{item.id}}'>
+              <button class='commit2'>去修正</button>
+            </navigator>
+          </view>
+        </view>
+      </view>
+      <!-- <view class='content' wx:if='{{item.shokey_status == 4 && taskTab == 1}}'>
+        <view class='noexist' wx:if='{{item.shokey_status == 4 && taskTab == 1}}'>
+          <view class='operate2'>
+            <image src="{{src1}}" mode="aspectFit" style='width:40rpx;height:40rpx;'></image>
+          </view>
+          <view class='operate3'>
+            <text class='operate3-text'>{{item.fail_reason}}</text>
+          </view>
+          <text class='operate4'></text>
+        </view>
+        <view class='operate5-view'>
+          <image class='operate5' src="{{src2}}" mode="aspectFit"></image>
+        </view>
+        <view class='one'>
+          <view class='one-row1'>
+            <view style='width:80%;display:flex;'>
+              <view style='width:30rpx;'></view>
+              <text class='number'>{{home_menu_data.persion_0003}}号:</text>
+              <text class='number1'>{{item.id}}</text>
+            </view>
+            <view class='one-row2'>
+              <view style='width:30rpx;'></view>
+              <view style='color:#4789f5;' bindtap='copyCode' data-id='{{item.id}}'>复制</view>
+            </view>
+          </view>
+          <view>
+            <text class='operate'>店铺名：</text>
+            <text class='operate1'>{{item.web_store_name}}</text>
+          </view>
+        </view>
+        <view class="userinfo-show">
+          <view class='userinfo-show-flex1'>
+            <image class="userinfo-avatar" src="{{item.main_image_url}}" mode="aspectFit" background-size=""></image>
+          </view>
+          <view class='userinfo-show-flex2'>
+            <view class="two">
+              <text class='dollar'>¥</text>
+              <text class='money'>{{item.execute_price}}</text>
+            </view>
+            <view class="three">
+              <text>任务类型：{{item.taskType}}</text>
+            </view>
+          </view>
+          <view class='userinfo-show-flex3'>
+            <navigator url='/pages/home/task/revision-task/revision-task?id={{item.id}}'>
+              <button class='commit2'>去修正</button>
+            </navigator>
+          </view>
+        </view>
+      </view>-->
+    </view>
+    <view style='height:20rpx;'></view>
+    <view wx:if='{{notResultsFlag_audit}}' class='bottom1'>
+      <image src='../icon/msg_wudingdan.png' mode='widthFix' style='width:240rpx;'></image>
+      <view style='height:30rpx;'></view>
+      <view class='msg-text'>您还没有相关的订单{{home_menu_data.persion_0003}}</view>
+    </view>
+    <view wx:if='{{!searchLoadingComplete2}}' class='bottom'>加载中</view>
+  </swiper-item>
+  <!-- 已完成 -->
+  <swiper-item style="width:100%; height:100%;position: relative">
+    <view wx:for="{{tasklist3}}" wx:key='unqiue' wx:if="{{taskTab == 0}}">
+      <view style='height:30rpx;'></view>
+      <view class='content'>
+        <view class='one'>
+          <view class='one-row1'>
+            <view style='width:80%;display:flex;'>
+              <view style='width:30rpx;'></view>
+              <text class='number'>{{home_menu_data.persion_0003}}号:</text>
+              <text class='number1'>{{item.id}}</text>
+            </view>
+            <view class='one-row2'>
+              <view style='width:30rpx;'></view>
+              <view style='color:#4789f5;' bindtap='copyCode' data-id='{{item.id}}'>复制</view>
+            </view>
+          </view>
+          <view>
+            <text class='operate' style='color:#5d5d5d'>完成时间：</text>
+            <text class='operate1' style='color:#5d5d5d'>{{item.real_end_time}}</text>
+          </view>
+        </view>
+        <view class="userinfo-show">
+          <view class='userinfo-show-flex1'>
+            <image class="userinfo-avatar" src="{{item.main_image_url}}" mode="aspectFit" background-size=""></image>
+          </view>
+          <view class='userinfo-show-flex2'>
+            <view class="two">
+              <text class='dollar'>¥</text>
+              <text class='money'>{{item.execute_price}}</text>
+            </view>
+            <view class="three">
+              <text class='payment'>{{home_menu_data.home_0018}}金额：</text>
+              <text class='sum'>{{filters.getNumNo(item.used_amount!=null?item.used_amount:item.price*item.buy_count)}}</text>
+            </view>
+            <view class="four">
+              <text class='amount'>拍下数量：</text>
+              <text class='count'>{{item.buy_count}}件</text>
+            </view>
+          </view>
+          <view class='userinfo-show-flex3'>
+            <button class='commit1'>已完成</button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:for="{{tasklist3}}" wx:key='unqiue' wx:if="{{taskTab == 1}}">
+      <view style='height:30rpx;'></view>
+      <view class='content'>
+        <view class='one'>
+          <view class='one-row1'>
+            <view style='width:80%;display:flex;'>
+              <view style='width:30rpx;'></view>
+              <text class='number'>{{home_menu_data.persion_0003}}号:</text>
+              <text class='number1'>{{item.id}}</text>
+            </view>
+            <view class='one-row2'>
+              <view style='width:30rpx;'></view>
+              <view style='color:#4789f5;' bindtap='copyCode' data-id='{{item.id}}'>复制</view>
+            </view>
+          </view>
+          <view>
+            <text class='operate' style='color:#5d5d5d'>完成时间：</text>
+            <text class='operate1' style='color:#5d5d5d'>{{item.settleTime}}</text>
+          </view>
+        </view>
+        <view class="userinfo-show">
+          <view class='userinfo-show-flex1'>
+            <image class="userinfo-avatar" src="{{item.main_image_url}}" mode="aspectFit"></image>
+          </view>
+          <view>
+            <view class='userinfo-show-flex2 userinfo-show-left'>
+              <view class="two">
+                <text class='dollar'>¥</text>
+                <text class='money'>{{item.execute_price}}</text>
+              </view>
+              <view class="three">
+                <text>任务类型：{{item.taskType}}</text>
+              </view>
+            </view>
+            <view class="userinfo-show-right">
+              <button class='Reminders Reminders1'>已完成</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view style='height:20rpx;'></view>
+    <view wx:if="{{sevenDays2}}" class="sevenDays">近{{taskDayNum}}天{{home_menu_data.persion_0003}}已全部加载</view>
+    <view wx:if='{{notResultsFlag_fini}}' class='bottom1'>
+      <image src='../icon/msg_wudingdan.png' mode='widthFix' style='width:240rpx;'></image>
+      <view style='height:30rpx;'></view>
+      <view class='msg-text'>近{{taskDayNum}}天暂无相关{{home_menu_data.persion_0003}}</view>
+    </view>
+    <view wx:if='{{!searchLoadingComplete3}}' class='bottom'>加载中</view>
+  </swiper-item>
+  <!-- 评价{{home_menu_data.persion_0003}} -->
+  <swiper-item style="width:100%; height:100%;">
+    <view wx:for="{{tasklist4}}" wx:key='unqiue'>
+      <view style='height:30rpx;'></view>
+      <view class='content'>
+        <view class='noexist' wx:if='{{item.shokey_status == 8}}'>
+          <view class='operate2'>
+            <image src="{{src1}}" mode="aspectFit" style='width:40rpx;height:40rpx;'></image>
+          </view>
+          <view class='operate3'>
+            <text class='operate3-text'>{{item.fail_reason}}</text>
+          </view>
+          <text class='operate4'></text>
+        </view>
+        <view class='operate5-view' wx:if='{{item.shokey_status == 8}}'>
+          <image class='operate5' src="{{src2}}" mode="aspectFit"></image>
+        </view>
+        <view class='one'>
+          <view class='one-row1'>
+            <view style='width:80%;display:flex;'>
+              <view style='width:30rpx;'></view>
+              <text class='number'>{{home_menu_data.persion_0003}}号:</text>
+              <text class='number1'>{{item.id}}</text>
+            </view>
+            <view class='one-row2'>
+              <view style='width:30rpx;'></view>
+              <view style='color:#4789f5;' bindtap='copyCode' data-id='{{item.id}}'>复制</view>
+            </view>
+          </view>
+          <view>
+            <text class='operate'>店铺名：</text>
+            <text class='operate1'>{{item.web_store_name}}</text>
+          </view>
+        </view>
+        <view class="userinfo-show">
+          <view class='userinfo-show-flex1'>
+            <image class="userinfo-avatar" src="{{item.main_image_url}}" mode="aspectFit" background-size=""></image>
+          </view>
+          <view class='userinfo-show-flex2 pjrw'>
+            <view class="two">
+              <text class='dollar'>¥</text>
+              <text class='money'>{{item.execute_price}}</text>
+            </view>
+            <view class='three'>
+              <text wx:if="{{item.comment.images.length == 0}}">指定评价</text>
+              <text wx:else>指定评价+晒图</text>
+            </view>
+          </view>
+          <view class='userinfo-show-flex3 pjrw2' wx:if='{{item.shokey_status == 5}}'>
+            <navigator url='/pages/home/task/evaluate-task/evaluate-task?id={{item.id}}'>
+              <button class='commit'>待操作</button>
+            </navigator>
+          </view>
+          <view class='userinfo-show-flex3 pjrw2' wx:if='{{item.shokey_status == 6}}'>
+            <button class='commit1'>待审核</button>
+          </view>
+          <view class='userinfo-show-flex3 pjrw2' wx:if='{{item.shokey_status == 8 && item.complaintStatus == 1}}'>
+            <view class='pjBtn'>审核失败投诉中</view>
+          </view>
+          <view class='userinfo-show-flex3 pjrw2' wx:if='{{item.shokey_status == 8 && (item.complaintStatus == 2 || item.complaintStatus == "" || item.complaintStatus == null )}}'>
+            <button class='commit1'>审核失败</button>
+          </view>
+          <!--<view class='userinfo-show-flex3' wx:if='{{item.shokey_status == 8}}'>
+            <navigator url='/pages/home/task/evaluate-task/evaluate-task?id={{item.id}}&&status=1'>
+              <button class='commit2' disabled='true'>去修正</button>
+            </navigator>
+            <button class='commit1'>已失败</button>
+          </view>-->
+          <view class='userinfo-show-flex3 pjrw2' wx:if='{{item.shokey_status == 7}}'>
+            <button class='commit1'>已完成</button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view style='height:20rpx;'></view>
+    <view wx:if='{{notResultsFlag_commen}}' class='bottom1'>
+      <image src='../icon/msg_wudingdan.png' mode='widthFix' style='width:240rpx;'></image>
+      <view style='height:30rpx;'></view>
+      <view class='msg-text'>您还没有相关的订单{{home_menu_data.persion_0003}}</view>
+    </view>
+    <view wx:if='{{!searchLoadingComplete4}}' class='bottom'>加载中</view>
+  </swiper-item>
+  <!-- 失败{{home_menu_data.persion_0003}} -->
+  <swiper-item style="width:100%; height:100%;position: relative">
+    <view wx:for="{{tasklist5}}" wx:key='unqiue' wx:if="{{taskTab == 0}}">
+      <view style='height:30rpx;'></view>
+      <view class='content'>
+        <view class="top" hidden="{{item.fail_reason == null || item.fail_reason == ''}}">
+        <image class="nodeImg1" src="../icon/icon_dingdanbucunzai.png"></image>
+          <view>{{item.fail_reason}}</view>
+        </view>
+        <view class='one'>
+          <view class='one-row1'>
+            <view style='width:80%;display:flex;'>
+              <view style='width:30rpx;'></view>
+              <text class='number'>{{home_menu_data.persion_0003}}号:</text>
+              <text class='number1'>{{item.id}}</text>
+            </view>
+            <view class='one-row2'>
+              <view style='width:30rpx;'></view>
+              <view style='color:#4789f5;' bindtap='copyCode' data-id='{{item.id}}'>复制</view>
+            </view>
+          </view>
+          <view>
+            <text class='operate' style='color:#333333'>{{home_menu_data.home_0005}}时间：</text>
+            <text class='operate1' style='color:#333333'>{{item.real_start_time}}</text>
+          </view>
+        </view>
+        <view class="userinfo-show">
+          <view class='userinfo-show-flex1'>
+            <image class="userinfo-avatar" src="{{item.main_image_url}}" mode="aspectFit" background-size=""></image>
+          </view>
+          <view class='userinfo-show-flex2'>
+            <view class="two">
+              <text class='dollar'>¥</text>
+              <text class='money'>{{item.execute_price}}</text>
+            </view>
+            <view class="three">
+              <text class='payment'>{{home_menu_data.home_0018}}金额：</text>
+              <text class='sum'>{{filters.getNumNo(item.used_amount!=null?item.used_amount:item.price*item.buy_count)}}</text>
+            </view>
+            <view class="four">
+              <text class='amount'>拍下数量：</text>
+              <text class='count'>{{item.buy_count}}件</text>
+            </view>
+          </view>
+          <view class='userinfo-show-flex3'>
+            <button class='commit1'>已失败</button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:for="{{tasklist5}}" wx:key='unqiue' wx:if="{{taskTab == 1}}">
+      <view style='height:30rpx;'></view>
+      <view class='content'>
+        <view class="top" hidden="{{item.fail_reason == null || item.fail_reason == ''}}">
+          <image class="nodeImg1" src="../icon/icon_dingdanbucunzai.png"></image>
+          <view>{{item.fail_reason}}</view>
+        </view>
+        <view class='one'>
+          <view class='one-row1'>
+            <view style='width:80%;display:flex;'>
+              <view style='width:30rpx;'></view>
+              <text class='number'>{{home_menu_data.persion_0003}}号:</text>
+              <text class='number1'>{{item.id}}</text>
+            </view>
+            <view class='one-row2'>
+              <view style='width:30rpx;'></view>
+              <view style='color:#4789f5;' bindtap='copyCode' data-id='{{item.id}}'>复制</view>
+            </view>
+          </view>
+          <view>
+            <text class='operate' style='color:#333333'>{{home_menu_data.home_0005}}时间：</text>
+            <text class='operate1' style='color:#333333'>{{item.real_start_time}}</text>
+          </view>
+        </view>
+        <view class="userinfo-show">
+            <view class='userinfo-show-flex1'>
+                <image class="userinfo-avatar" src="{{item.main_image_url}}" mode="aspectFit"></image>
+            </view>
+            <view>
+                <view class='userinfo-show-flex2 userinfo-show-left'>
+                    <view class="two">
+                        <text class='dollar'>¥</text>
+                        <text class='money'>{{item.execute_price}}</text>
+                    </view>
+                    <view class="three">
+                        <text>任务类型：{{item.taskType}}</text>
+                    </view>
+                </view>
+                <view class="userinfo-show-right">
+                    <button class='Reminders Reminders1'>已失败</button>
+                </view>
+            </view>
+        </view>
+      </view>
+    </view>
+    <view style='height:20rpx;'></view>
+    <view wx:if="{{sevenDays3}}"  class="sevenDays">近{{taskDayNum}}天{{home_menu_data.persion_0003}}已全部加载</view>
+    <view wx:if='{{notResultsFlag_fail}}' class='bottom1'>
+      <image src='../icon/msg_wudingdan.png' mode='widthFix' style='width:240rpx;'></image>
+      <view style='height:30rpx;'></view>
+      <view class='msg-text'>近{{taskDayNum}}天暂无相关{{home_menu_data.persion_0003}}</view>
+    </view>
+    <view wx:if='{{!searchLoadingComplete5}}' class='bottom'>加载中</view>
+  </swiper-item>
+</swiper>
+</view>

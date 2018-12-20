@@ -1,0 +1,13 @@
+<view style='height:50rpx;' wx:if='{{user.qq != null}}'></view>
+<view class='old' wx:if='{{user.qq != null}}'>当前QQ号:{{user.qq}}</view>
+<view style='height:50rpx;'></view>
+<view class='new'>
+  <input class='setQQ' placeholder='请输入QQ号' placeholder-style='color:#999999' bindinput='setQQ'></input>
+</view>
+<view style='height:50rpx;'></view>
+<view class='three'>
+  <view class='btn' bindtap='saveQQ'>保存</view>
+</view>
+<loading hidden="{{loading?'hidden':''}}">
+  加载中...
+</loading>

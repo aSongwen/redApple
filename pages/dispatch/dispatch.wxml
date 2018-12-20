@@ -1,0 +1,96 @@
+<!--pages/dispatch/dispatch.wxml-->
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100vh;background-size:100%;">
+<view style='height:{{height}}px;width:{{width}}px' class='show-view'>
+  <view class='show-view-row1'>
+    <image src='./icon/icon_paidanchenggong.png' style='height:122rpx;width:118rpx;'></image>
+    <view style='height:10rpx;' />
+    <text class='show-view-row1-text'>{{home_menu_data.persion_0004}}成功，等待您执行..</text>
+  </view>
+  <view style='height:20rpx;' />
+  <view class='show-view-row2'>
+    <view style='width:3%;'></view>
+    <view class='show-view-row2-row' wx:if="{{taskTab == 0}}">
+      <view class='show-view-li'>
+        <image src='./icon/money.png' style='height:60rpx;width:60rpx;'></image>
+      </view>
+      <view class='show-view-text'>
+        <text class='show-view-text-text'>{{home_menu_data.home_0018}}金额</text>
+      </view>
+      <view class='show-view-money'>
+        <view style='width:30rpx;' />
+        <text class='show-view-money-text2'>元</text>
+        <view style='width:5rpx;' />
+        <text class='show-view-money-text'>{{task.borrowPrice}}</text>
+        <text class='show-view-money-text2'>小于</text>
+      </view>
+    </view>
+    <view class='show-view-row2-row' wx:if="{{taskTab == 1}}">
+      <view class='show-view-li'>
+        <image src='./icon/money.png' style='height:60rpx;width:60rpx;'></image>
+      </view>
+      <view class='show-view-text'>
+        <text class='show-view-text-text'>任务类型</text>
+      </view>
+      <view class='show-view-money'>
+        <view style='width:30rpx;' />
+    
+        <view style='width:5rpx;' />
+        <text class='show-view-money-text2 text22'>{{task.flowTaskType}}</text>
+    
+      </view>
+    </view>
+  </view>
+  <view class='show-view-row2'>
+    <view style='width:3%;'></view>
+    <view class='show-view-row2-row'>
+      <view class='show-view-li'>
+        <image src='./icon/yongjin.png' style='height:60rpx;width:60rpx;'></image>
+      </view>
+      <view class='show-view-text'>
+        <text class='show-view-text-text'>{{home_menu_data.persion_0003}}{{home_menu_data.home_0001}}</text>
+      </view>
+      <view class='show-view-money'>
+        <view style='width:30rpx;' />
+        <text class='show-view-money-text2'>元</text>
+        <view style='width:5rpx;' />
+        <text class='show-view-money-text'>{{task.executePrice}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='show-view-row3'>
+    <view style='width:3%;'></view>
+    <view class='show-view-row2-row2'>
+      <view class='show-view-li'>
+        <image src='./icon/time.png' style='height:60rpx;width:60rpx;'></image>
+      </view>
+      <view class='show-view-text'>
+        <text class='show-view-text-text'>限时完成</text>
+      </view>
+      <view class='show-view-money'>
+        <view style='width:30rpx;' />
+        <text class='show-view-money-text2'>分钟</text>
+        <view style='width:5rpx;' />
+        <text class='show-view-money-text'>{{task.timeOut}}</text>
+      </view>
+    </view>
+  </view>
+  <view style='height:50rpx;' />
+  <button class='show-view-handle' bindtap='naviTo'>操作{{home_menu_data.persion_0003}}</button>
+  <view style='height:30rpx;' />
+  <button class='show-view-cancel' bindtap="showDialogBtn">取消{{home_menu_data.persion_0003}}</button>
+</view>
+<!--弹窗-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title">提示</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <text class='modal-input-text'>确定取消这次{{home_menu_data.persion_0003}}吗？</text>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">是</view>
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">否</view>
+  </view>
+</view>
+</view>

@@ -1,0 +1,45 @@
+page{
+  background-color: #f0f0f0;
+}
+.old {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80rpx;
+  font-size: 32rpx;
+}
+.new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 120rpx;
+  font-size: 32rpx;
+}
+.setQQ{
+  border: 1rpx solid #cdcdcd;
+  width: 80%;
+  height: 80rpx;
+  background-color: #ffffff;
+  padding-left: 20rpx;
+}
+.three{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 120rpx;
+  font-size: 32rpx;
+}
+.btn{
+  border: 1rpx solid #cdcdcd;
+  border-radius: 10rpx;
+  width: 80%;
+  height: 80rpx;
+  background-color: #f54747;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}

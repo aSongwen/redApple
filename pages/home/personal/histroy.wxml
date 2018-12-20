@@ -1,0 +1,24 @@
+<!-- <view class='modal-dialog2'>
+</view> -->
+<!-- <view class="modal-title" style='height:50px'>查看历史邀请码</view> -->
+<scroll-view scroll-y="true" class='modal-content' bindscrolltolower='searchScrollLower' style='height:{{height-50}}px'>
+  <view class='modal-content2' wx:for='{{notics}}' wx:key='unique'>
+    <view class='modal-center'>
+      <view class='modal-row1'>
+        <view class='modal-row1-text1'>{{item.code}}</view>
+        <view class='modal-row1-text2'>{{item.gmtTime}}</view>
+      </view>
+      <view class='modal-row2'>
+        <button open-type='share' class='shareBtn' wx:if='{{item.refereePromoterId==null}}' data-inviteCode='{{item.code}}'>
+          <image src='./icon/center_icon_yaoqinghaoyou.png' style='height:50rpx;width:50rpx;'></image>
+        </button>
+        <view style='width:50rpx;'></view>
+        <view class='modal-row1-text3' style="color:{{item.refereePromoterId!=null?'#e46229':'#666666'}}">{{item.refereePromoterId!=null?'已使用':'未使用'}}</view>
+        <view style='width:50rpx;'></view>
+        <view class='modal-row1-text3' data-code='{{item.code}}' style='color:#4789f5;' bindtap='copyCode'>复制</view>
+      </view>
+    </view>
+  </view>
+  <view class='bottom' wx:if='{{!searchLoading}}'>加载中</view>
+  <view class='bottom' wx:if='{{searchLoadingComplete}}'>已无更多内容</view>
+</scroll-view>

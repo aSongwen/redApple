@@ -1,0 +1,92 @@
+/* pages/dispatch/cancel.wxss */
+
+.show-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(240,240,240,.7);
+}
+
+.show-view-row1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 270rpx;
+  width: 100%;
+  background-color:rgba(255,255,255,.7);
+}
+
+.show-view-row1-text {
+  font-size: 36rpx;
+  color: #999999;
+}
+
+.show-view-row2 {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  width: 100%;
+  background-color: rgba(240,240,240,.7);
+  padding-left: 50rpx;
+}
+
+.show-view-row2-text {
+  color: #999999;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  width: 100%;
+  background-color:rgba(255,255,255,.5);
+}
+
+.radio-group-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.radio-group-rows1 {
+  width: 97%;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border-bottom: 0.5rpx solid #cdcdcd;
+}
+
+.radio-group-rows2 {
+  width: 97%;
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.radio-group-row-radio1 {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radio-group-row-radio2 {
+  width: 85%;
+  display: flex;
+  align-items: center;
+}
+
+.radio-group-row-text {
+  color: #333333;
+  font-size: 30.5rpx;
+}
+
+.show-view-btn {
+  background-color: #f54747;
+  width: 90%;
+  font-size: 36rpx;
+  color: #ffffff;
+}

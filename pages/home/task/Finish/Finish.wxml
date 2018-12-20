@@ -1,0 +1,23 @@
+<!--pages/login/taobao/Auditing/Auditing.wxml-->
+<view style="background: url({{backgroundUrl}})repeat;width:100%;height:100vh;background-size:100%;">
+    <view class='show-view'>
+        <view class='show-view-flex1'>
+            <view style='height:50rpx;' />
+            <image src='../../icon/icon_pdcg.png' mode='widthFix' style='width:124rpx;' />
+            <view style='height:20rpx;' />
+            <text class='show-view-flex1-text'>您的浏览{{home_menu_data.persion_0003}}已经完成</text>
+        </view>
+        <view style='height:24rpx;' />
+        <view class="flowTips">
+            <view>您当前任务获得佣金<text class="colorRed">{{executePrice}}</text>元</view>
+        </view>
+        <view class="flowList">
+            <view><image src="../../icon/dengpao.png"></image>多接浏览任务可提高下单任务的优先派单率。</view>
+        </view>
+        <view style='height:30rpx;' />
+        <view class='show-view-flex3'>
+            <button class='show-view-flex3-btn' bindtap='toHome'>好的，我知道了！</button>
+            <view style='height:20rpx;' />
+        </view>
+    </view>
+</view>

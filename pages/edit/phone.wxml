@@ -1,0 +1,38 @@
+<view class='userinfo'>
+  <view class='userinfo-step'>
+  </view>
+  <view style='height:200rpx;' />
+  <view class='userinfo-input'>
+    <text class='userinfo-input-text'>+86</text>
+    <input class='userinfo-input-input' type='number' placeholder='请输入手机号码' maxlength='11' name='phone' value='{{oldMobile}}' disabled='true'></input>
+  </view>
+  <view style='height:30rpx;' />
+  <view class='userinfo-input'>
+    <input class='userinfo-input-input2' type='number' placeholder='请输入验证码' maxlength='6' name='code' bindinput='setMobileCode'></input>
+    <button type="button" class="{{is_show?'userinfo-input-btnshow':'userinfo-input-btnhide'}}" bindtap="clickVerify" disabled='{{checkCode}}'>获取验证码</button>
+    <button type="button" class="{{is_show?'userinfo-input-btnhide':'userinfo-input-btnshow'}}">{{last_time}}s</button>
+  </view>
+  <view style='height:30rpx;' />
+  <view class='userinfo-input'>
+    <text class='userinfo-input-text'>+86</text>
+    <input class='userinfo-input-input' type='number' placeholder='请输入新手机号码' maxlength='11' name='phone' bindinput='setNewPhone'></input>
+  </view>
+  <view style='height:30rpx;' />
+  <view class='userinfo-input'>
+    <input class='userinfo-input-input2' type='number' placeholder='请输入验证码' maxlength='6' name='code' bindinput='setMobileCodeNew' style="width:75%;"></input>
+    <button type="button" class="{{is_show_new?'userinfo-input-btnshow':'userinfo-input-btnhide'}}" bindtap="clickNewVerify" disabled='{{checkCode_new}}' style="width:80%;padding-left:7px;padding-right:7px;">获取新手机验证码</button>
+    <button type="button" class="{{is_show_new?'userinfo-input-btnhide':'userinfo-input-btnshow'}}">{{last_time_new}}s</button>
+  </view>
+  <view style='height:100rpx;' />
+  <button class='submit-btn' bindtap='submitNext' disabled='{{disabled}}'>确认修改</button>
+  <view style='height:5rpx;'></view>
+</view>
+<loading hidden="{{!disabled?'hidden':''}}">
+  修改手机号码中...
+</loading>
+<loading hidden="{{!checkCode?'hidden':''}}">
+  发送验证码中...
+</loading>
+<loading hidden="{{!checkMobile?'hidden':''}}">
+  判断手机号码是否可用...
+</loading>

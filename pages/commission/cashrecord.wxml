@@ -1,0 +1,29 @@
+<!--pages/commission/cashrecord.wxml-->
+<view class='show-view' style='widht:{{width}}px;' wx:for='{{tasklist}}' wx:key='1'>
+  <view class='show-view-column1'>
+    <view style='width:5%;'></view>
+    <view class='show-view-column1-row1'>{{home_menu_data.home_0009}}</view>
+    <view class='show-view-column1-row2'>{{item.amount}}</view>
+    <view style='width:5%;'></view>
+  </view>
+  <view class='show-view-column2'>
+    <view class='show-view-column2-column1'>
+      <view style='width:5%;'></view>
+      <view class='show-view-column2-column1-row1' wx:if='{{item.tradingType==2}}'>微信钱包</view>
+      <view class='show-view-column2-column1-row1' wx:if='{{item.tradingType==3}}'>银行卡{{item.card}}</view>
+      <!-- <view wx:if='{{item.flag}}' class='show-view-column2-column1-row2'>余额：{{item.amount}}</view> -->
+      <view wx:if='{{item.flag1}}' class='show-view-column2-column1-row3' wx:if='{{item.status == 1}}' bindtap='toCashWait'>
+        <view class='swiper-view2-navigator'>系统处理中</view>
+      </view>
+      <view wx:if='{{item.flag1}}' class='show-view-column2-column1-row3' wx:if='{{item.status == 3}}'>
+        <view class='swiper-view2-navigator'>审核未通过</view>
+      </view>
+      <view style='width:5%;'></view>
+    </view>
+    <view class='show-view-column2-column2'>
+      <view style='width:5%;'></view>
+      <view>{{item.gmtTime}}</view>
+    </view>
+  </view>
+</view>
+<view class='bottom' wx:if='{{searchLoadingComplete}}'>暂无更多数据</view>
